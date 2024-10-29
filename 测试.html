@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +12,23 @@
         }
     </style>
 </head>
-
 <body>
     <h1>点击按钮打开 QQ</h1>
     <button onclick="openQQ()">QQ</button>
 
     <script>
         function openQQ() {
-            const qqNumber = "2151294664"; // 替换为你的QQ号码
-            window.location.href = `mqq://im/chat?chat_type=wpa&uin=${qqNumber}`;
+            const qqNumber = "你的QQ号码"; // 替换为你的QQ号码
+            const qqUrl = `mqq://im/chat?chat_type=wpa&uin=${qqNumber}`;
+            
+            // 尝试跳转
+            window.location.href = qqUrl;
+
+            // 如果跳转失败，可以提示用户手动打开
+            setTimeout(() => {
+                alert('如果没有跳转，请手动打开 QQ，并搜索你的QQ号码。');
+            }, 2000);
         }
     </script>
 </body>
-
 </html>
