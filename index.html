@@ -4,16 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="2.ico" type="image/x-icon">
     <title>无敌小帅哥的博客</title>
-    <link rel="icon" href="2.ico" type="image/x-icon"> <!-- 确保路径指向正确 -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            /* 使页面占满整个视口高度 */
+            position: relative;
+        }
+
+        #clock {
+            font-size: 48px;
+            font-weight: bold;
+            position: absolute;
+            /* 使用绝对定位 */
+            top: 20px;
+            /* 距离顶部20像素 */
+            right: 20px;
+            /* 距离右侧20像素 */
+        }
+
+        #date {
+            font-size: 24px;
+            position: absolute;
+            top: 80px;
+            right: 20px;
+        }
+    </style>
 </head>
 
 <body>
+
+    <!-- 时钟 -->
+    <!-- <h1 style="text-align: center;">当前时间</h1> -->
+    <div id="clock"></div>
+    <div id="date"></div>
+
+    <script>
+        function updateClock() {
+            // 时间
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = timeString;
+
+            // 日期
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const dateString = `${year}-${month}-${day}`;
+            document.getElementById('date').textContent = dateString;
+        }
+
+        // 每秒更新时钟
+        setInterval(updateClock, 1000);
+        // 初始化时钟
+        updateClock();
+    </script>
+
     <header>
         <h1>无敌小帅哥的博客</h1>
     </header>
     <main>
         <p>欢迎来到我的博客！我是 <strong>懒洋洋</strong>，一个热爱编程和分享的人。</p>
+    </main>
     <button id="button1">小帅哥的主页</button>
     <button id="button2">懒洋洋</button>
     <button id="button3">灰太狼</button>
@@ -36,7 +96,6 @@
             window.location.href = "index.html"; // 替换为你的本地页面4的文件名
         };
     </script>
-    </main>
 </body>
 
 </html>
