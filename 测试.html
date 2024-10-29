@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跳转到 QQ</title>
+    <style>
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>点击按钮打开 QQ</h1>
+    <button onclick="openQQ()">QQ</button>
+
+    <script>
+        function openQQ() {
+            const qqNumber = "2151294664"; // 替换为你的QQ号码
+            window.location.href = `mqq://im/chat?chat_type=wpa&uin=${qqNumber}`;
+        }
+    </script>
+</body>
+
+</html>
