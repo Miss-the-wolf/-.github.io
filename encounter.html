@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人介绍</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info {
+            margin-bottom: 20px;
+        }
+
+        .info h2 {
+            color: #555;
+        }
+
+        .info p {
+            line-height: 1.6;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            /* 使按钮居中对齐 */
+            margin: 20px 0;
+            /* 按钮上下边距 */
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 0 10px;
+            /* 按钮左右间距 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>大音希声，大象无形</h1>
+
+    <div class="container">
+        <h1>About Me</h1>
+
+        <div class="info">
+            <h2>个人简介</h2>
+            <p>你好！我叫[懒洋洋]，我是一枚有理想的[小舔狗]。</p>
+        </div>
+
+        <div class="info">
+            <h2>教育背景</h2>
+            <p>大二计算机专业。</p>
+        </div>
+
+        <div class="info">
+            <h2>工作经历</h2>
+            <p>曾在 [无敌小帅哥] 公司担任 [程序员]，负责 [所有岗位开发]。</p>
+        </div>
+
+        <div class="info">
+            <h2>兴趣爱好</h2>
+            <p>在业余时间，我喜欢"台球"和"足球"等运动，这让我感到真实和快乐。</p>
+            <p>是三国乱世的资深白嫖玩家</p>
+        </div>
+
+        <div class="info">
+            <h2>联系我</h2>
+            <p>如果你想和我交流，可以通过以下方式联系我：</p>
+            <p>QQ: 2151294664</p>
+            <p>电话: <span id="phone">13363429451</span></p>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button onclick="openQQ()">QQ</button>
+        <button onclick="copyPhone()">复制电话</button>
+    </div>
+
+    <script>
+        function openQQ() {
+            const qqNumber = "2151294664"; // 替换为你的QQ号码
+            const qqUrl = `mqq://im/chat?chat_type=wpa&uin=${qqNumber}`;
+
+            // 复制 QQ 号码到剪贴板
+            navigator.clipboard.writeText(qqNumber).then(() => {
+                // 尝试跳转到 QQ 应用
+                window.location.href = qqUrl;
+
+                // 提示用户已复制
+                alert('QQ号码已复制到剪贴板！');
+
+                // 如果跳转失败，可以提示用户手动打开
+                setTimeout(() => {
+                    alert('如果没有跳转，请手动打开 QQ，并搜索号码 ' + qqNumber);
+                }, 2000);
+            }).catch(err => {
+                alert('复制失败！请手动复制号码：' + qqNumber); // 处理复制失败
+            });
+        }
+
+        function copyPhone() {
+            const phoneNumber = "13363429451"; // 替换为你的电话号码
+
+            // 复制电话号码到剪贴板
+            navigator.clipboard.writeText(phoneNumber).then(() => {
+                alert('电话号码已复制到剪贴板！');
+            }).catch(err => {
+                alert('复制失败！请手动复制号码：' + phoneNumber); // 处理复制失败
+            });
+        }
+    </script>
+    <hr>
+</body>
+
+</html>
