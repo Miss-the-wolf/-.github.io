@@ -42,8 +42,31 @@
 </head>
 
 <body>
+    <form action="https://www.baidu.com/s" target="target">
+        <input type="text" name="wd" placeholder="请输入搜索内容">
+        <button>百度搜索</button>
+    </form>
 
-    <!-- 时钟 -->
+    <form action="https://www.google.com/search" target="_blank">
+        <input type="text" name="q" placeholder="请输入搜索内容">
+        <button type="submit">谷歌搜索</button>
+    </form>
+    <form id="translateForm" target="_blank" onsubmit="return submitForm()">
+        <input type="text" id="word" placeholder="请输入要翻译的内容">
+        <button type="submit">翻译</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            const word = document.getElementById('word').value;
+            const translateURL = `https://translate.google.com/?sl=auto&tl=zh-CN&text=${encodeURIComponent(word)}&op=translate`;
+            window.open(translateURL, '_blank');
+            return false; // 防止表单的默认提交行为
+        }
+    </script>
+
+
+    </form <!-- 时钟 -->
     <!-- <h1 style="text-align: center;">当前时间</h1> -->
     <div id="clock"></div>
     <div id="date"></div>
@@ -99,9 +122,8 @@
         };
 
         document.getElementById("button4").onclick = function () {
-            window.location.href = "index.html"; // 替换为你的本地页面4的文件名
+            window.location.href = "encounter.html"; // 替换为你的本地页面4的文件名
         };
-
         document.getElementById("button5").onclick = function () {
             window.location.href = "测试.html"; // 替换为你的本地页面5的文件名
         };
