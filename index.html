@@ -9,34 +9,202 @@
 
     <style>
         body {
+            position: relative;
+            height: 100vh;
+            background-color: #f0f0f0;
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            height: 100vh;
-            /* 使页面占满整个视口高度 */
-            position: relative;
         }
 
         #clock {
-            font-size: 48px;
-            font-weight: bold;
             position: absolute;
-            /* 使用绝对定位 */
-            bottom: 50px;
-            /* 距离底部80像素 */
-            right: 20px;
-            /* 距离右侧20像素 */
+            bottom: 35px;
+            right: 10px;
+            background: #fff;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
         }
 
         #date {
-            font-size: 24px;
-            /* 调整日期字体大小 */
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            padding: 8px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        main {
+            text-align: center;
+            margin: 20px;
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+
+    <style>
+        /* 设置页面基本样式 */
+        body {
+            margin: 0;
+            /* 移除默认边距 */
+            height: 100vh;
+            /* 让页面占满整个视口高度 */
+        }
+
+        /* 钟表容器样式 */
+        .clock {
             position: absolute;
             /* 使用绝对定位 */
-            bottom: 20px;
-            /* 距离底部20像素，调整位置以适应时钟 */
-            right: 20px;
-            /* 距离右侧20像素 */
+            top: 5px;
+            /* 距离页面顶部5像素 */
+            right: 5px;
+            /* 距离页面右侧5像素 */
+            width: 150px;
+            /* 钟表的宽度 */
+            height: 150px;
+            /* 钟表的高度 */
+            background-color: #1d2129;
+            /* 设置钟表的背景颜色 */
+            /* border: 10px solid white; */
+            /* 去掉白色边框 */
+            border-radius: 50%;
+            /* 使边框圆形 */
+        }
+
+
+        /* 数字的样式 */
+        .numbers {
+            position: absolute;
+            /* 绝对定位 */
+            width: 100%;
+            /* 占满整个钟表 */
+            height: 100%;
+            /* 占满整个钟表 */
+            display: flex;
+            /* 使用 Flexbox 布局 */
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+            /* 垂直居中 */
+            pointer-events: none;
+            /* 使数字不干扰时钟的交互 */
+        }
+
+        /* 每个数字的样式 */
+        .number {
+            position: absolute;
+            /* 绝对定位 */
+            width: 25%;
+            /* 宽度为容器的25% */
+            text-align: center;
+            /* 文字居中对齐 */
+            font-size: 16px;
+            /* 字体大小 */
+            color: white;
+            /* 字体颜色 */
+        }
+
+        /* 设置每个数字在钟表上的位置 */
+        .number:nth-child(12) {
+            transform: translate(0, -60px);
+        }
+
+        .number:nth-child(1) {
+            transform: rotate(30deg) translate(0, -60px);
+        }
+
+        .number:nth-child(2) {
+            transform: rotate(60deg) translate(0, -60px);
+        }
+
+        .number:nth-child(3) {
+            transform: rotate(90deg) translate(0, -60px);
+        }
+
+        .number:nth-child(4) {
+            transform: rotate(120deg) translate(0, -60px);
+        }
+
+        .number:nth-child(5) {
+            transform: rotate(150deg) translate(0, -60px);
+        }
+
+        .number:nth-child(6) {
+            transform: rotate(180deg) translate(0, -60px);
+        }
+
+        .number:nth-child(7) {
+            transform: rotate(210deg) translate(0, -60px);
+        }
+
+        .number:nth-child(8) {
+            transform: rotate(240deg) translate(0, -60px);
+        }
+
+        .number:nth-child(9) {
+            transform: rotate(270deg) translate(0, -60px);
+        }
+
+        .number:nth-child(10) {
+            transform: rotate(300deg) translate(0, -60px);
+        }
+
+        .number:nth-child(11) {
+            transform: rotate(330deg) translate(0, -60px);
+        }
+
+        /* 时针、分针、秒针的样式 */
+        .hour,
+        .minute,
+        .second {
+            position: absolute;
+            /* 绝对定位 */
+            bottom: 50%;
+            /* 底部距离为50% */
+            left: 50%;
+            /* 左侧距离为50% */
+            background-color: white;
+            /* 背景颜色为白色 */
+            border-radius: 5px;
+            /* 边角圆润 */
+            transform-origin: bottom;
+            /* 旋转的原点在底部 */
+        }
+
+        .hour {
+            width: 4px;
+            /* 时针宽度 */
+            height: 25px;
+            /* 时针高度 */
+            background-color: rgb(176, 63, 63);
+        }
+
+        .minute {
+            width: 3px;
+            /* 分针宽度 */
+            height: 35px;
+            /* 分针高度 */
+            background-color: rgb(222, 222, 172);
+        }
+
+        .second {
+            width: 2px;
+            /* 秒针宽度 */
+            height: 45px;
+            /* 秒针高度 */
+            background-color: rgb(220, 213, 213);
+            /* 秒针样式 */
         }
     </style>
 </head>
@@ -51,6 +219,7 @@
         <input type="text" name="q" placeholder="请输入搜索内容">
         <button type="submit">谷歌搜索</button>
     </form>
+
     <form id="translateForm" target="_blank" onsubmit="return submitForm()">
         <input type="text" id="word" placeholder="请输入要翻译的内容">
         <button type="submit">翻译</button>
@@ -65,35 +234,77 @@
         }
     </script>
 
-
-    </form <!-- 时钟 -->
-    <!-- <h1 style="text-align: center;">当前时间</h1> -->
     <div id="clock"></div>
     <div id="date"></div>
 
     <script>
         function updateClock() {
             const now = new Date();
+
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
-            const timeString = `${hours}:${minutes}:${seconds}`;
-            document.getElementById('clock').textContent = timeString;
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
 
-            // 更新日期
             const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份从0开始
+            const month = String(now.getMonth() + 1).padStart(2, '0');
             const day = String(now.getDate()).padStart(2, '0');
-            const weekDays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-            const weekDay = weekDays[now.getDay()];
-            const dateString = `${year}-${month}-${day} ${weekDay}`; // 格式化日期为 YYYY-MM-DD
-            document.getElementById('date').textContent = dateString;
+
+            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const weekday = weekdays[now.getDay()];
+
+            document.getElementById('date').textContent = `${year}-${month}-${day} ${weekday}`;
         }
 
-        // 每秒更新时钟
         setInterval(updateClock, 1000);
-        // 初始化时钟
-        updateClock();
+        updateClock(); // 初始化显示
+    </script>
+
+
+    <div class="clock">
+        <div class="hour" id="hour"></div> <!-- 时针 -->
+        <div class="minute" id="minute"></div> <!-- 分针 -->
+        <div class="second" id="second"></div> <!-- 秒针 -->
+        <div class="numbers">
+            <!-- 时钟数字 -->
+            <div class="number">I</div>
+            <div class="number">II</div>
+            <div class="number">III</div>
+            <div class="number">IV</div>
+            <div class="number">V</div>
+            <div class="number">VI</div>
+            <div class="number">VII</div>
+            <div class="number">VIII</div>
+            <div class="number">IX</div>
+            <div class="number">X</div>
+            <div class="number">XI</div>
+            <div class="number">XII</div>
+        </div>
+    </div>
+    <script>
+        // 更新时钟的函数
+        function updateClock() {
+            const now = new Date(); // 获取当前时间
+            const hours = now.getHours() % 12; // 获取小时，并转换为12小时制
+            const minutes = now.getMinutes(); // 获取分钟
+            const seconds = now.getSeconds(); // 获取秒
+
+            // 计算每根指针的旋转角度
+            const hourDeg = (hours + minutes / 60) * 30; // 时针角度
+            const minuteDeg = (minutes + seconds / 60) * 6; // 分针角度
+            const secondDeg = seconds * 6; // 秒针角度
+
+            // 设置每根指针的旋转
+            document.getElementById('hour').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('minute').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('second').style.transform = `rotate(${secondDeg}deg)`;
+
+            // 请求下一帧更新时钟
+            requestAnimationFrame(updateClock);
+        }
+
+        // 启动时钟更新
+        requestAnimationFrame(updateClock);
     </script>
 
     <header>
@@ -102,30 +313,34 @@
     <main>
         <p>欢迎来到我的博客！我是 <strong>懒洋洋</strong>，一个热爱编程和分享的人。</p>
     </main>
-    <button id="button1">小帅哥的主页</button>
-    <button id="button2">懒洋洋</button>
-    <button id="button3">灰太狼</button>
-    <button id="button4">找到我</button>
-    <button id="button5">测试内容</button>
+
+    <div style="text-align: center;">
+        <button id="button1">小帅哥的主页</button>
+        <button id="button2">懒洋洋</button>
+        <button id="button3">灰太狼</button>
+        <button id="button4">找到我</button>
+        <button id="button5">测试内容</button>
+    </div>
 
     <script>
         document.getElementById("button1").onclick = function () {
-            window.location.href = "小帅哥的主页.html"; // 替换为你的本地页面1的文件名
+            window.location.href = "小帅哥的主页.html";
         };
 
         document.getElementById("button2").onclick = function () {
-            window.location.href = "lyy.html"; // 替换为你的本地页面2的文件名
+            window.location.href = "lyy.html";
         };
 
         document.getElementById("button3").onclick = function () {
-            window.location.href = "htl.html"; // 替换为你的本地页面3的文件名
+            window.location.href = "htl.html";
         };
 
         document.getElementById("button4").onclick = function () {
-            window.location.href = "encounter.html"; // 替换为你的本地页面4的文件名
+            window.location.href = "encounter.html";
         };
+
         document.getElementById("button5").onclick = function () {
-            window.location.href = "测试.html"; // 替换为你的本地页面5的文件名
+            window.location.href = "测试.html";
         };
     </script>
 </body>
