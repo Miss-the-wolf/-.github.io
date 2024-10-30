@@ -8,100 +8,142 @@
     <title>日记</title>
 
     <style>
+        /* 设置整体背景和字体样式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            /* 字体样式 */
+            background-color: #f0f4f8;
+            /* 更柔和的背景色 */
+            margin: 0;
+            /* 去掉默认外边距 */
+            padding: 20px;
+            /* 内边距 */
+        }
+
+        /* 设置标题的样式 */
+        header {
+            background-color: #e4c1d3;
+            /* 标题背景色 */
+            padding: 20px;
+            /* 内边距 */
+            border-radius: 8px;
+            /* 圆角 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            /* 阴影效果 */
+            text-align: center;
+            /* 文本居中 */
+            margin-bottom: 20px;
+            /* 底部外边距 */
+        }
+
+        /* 设置标题文字样式 */
         header h1 {
             font-size: 2.5em;
-            /* 调整字体大小 */
+            /* 字体大小 */
             color: #8484c2;
             /* 字体颜色 */
             text-shadow: 1px 1px 2px rgba(126, 98, 134, 0.1);
-            /* 添加阴影效果 */
+            /* 字体阴影 */
             margin: 0;
-            /* 去掉默认的外边距 */
+            /* 去掉默认外边距 */
             padding: 10px 0;
-            /* 添加内边距 */
-            /* border-bottom: 2px solid #007bff; */
-            /* 底部边框 */
-            display: inline-block;
-            /* 使标题成为块级元素 */
+            /* 内边距 */
         }
 
-        /* header {
-            background-color: #f0f8ff;
-            /* 背景颜色 */
-        padding: 20px;
-        /* 内边距 */
-        border-radius: 8px;
-        /* 圆角 */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        /* 阴影效果 */
-        }
-
-        */ body {
-            font-family: Arial, sans-serif;
-            background-color: #a63232;
-            margin: 0;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
+        /* 日记输入框的样式 */
         .diary-entry {
             background: white;
+            /* 背景颜色 */
             padding: 20px;
+            /* 内边距 */
             border-radius: 8px;
+            /* 圆角 */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            /* 阴影效果 */
             margin-bottom: 20px;
+            /* 底部外边距 */
         }
 
+        /* 文本区域样式 */
         textarea {
             width: 100%;
+            /* 宽度 */
             height: 150px;
+            /* 高度 */
             padding: 10px;
+            /* 内边距 */
             border: 1px solid #ccc;
+            /* 边框 */
             border-radius: 5px;
+            /* 圆角 */
             margin-top: 10px;
+            /* 顶部外边距 */
         }
 
+        /* 按钮样式 */
         button {
             padding: 10px 15px;
+            /* 内边距 */
             background-color: #007bff;
+            /* 背景颜色 */
             color: white;
+            /* 字体颜色 */
             border: none;
+            /* 无边框 */
             border-radius: 5px;
+            /* 圆角 */
             cursor: pointer;
+            /* 鼠标样式 */
             margin-top: 10px;
+            /* 顶部外边距 */
         }
 
+        /* 按钮悬停效果 */
         button:hover {
             background-color: #0056b3;
+            /* 悬停背景颜色 */
         }
 
+        /* 日记记录列表样式 */
         ul {
             list-style-type: none;
+            /* 去掉列表样式 */
             padding: 0;
+            /* 去掉内边距 */
         }
 
+        /* 日记条目样式 */
         .entry {
             display: flex;
+            /* 使用flex布局 */
             justify-content: space-between;
+            /* 在主轴方向上均匀分布 */
             align-items: center;
+            /* 在交叉轴方向上居中对齐 */
             margin-bottom: 10px;
+            /* 底部外边距 */
         }
 
+        /* 删除按钮样式 */
         .delete-button {
             background-color: #dc3545;
+            /* 背景颜色 */
             border: none;
+            /* 无边框 */
             color: white;
+            /* 字体颜色 */
             padding: 5px 10px;
+            /* 内边距 */
             border-radius: 5px;
+            /* 圆角 */
             cursor: pointer;
+            /* 鼠标样式 */
         }
 
+        /* 删除按钮悬停效果 */
         .delete-button:hover {
             background-color: #c82333;
+            /* 悬停背景颜色 */
         }
     </style>
 </head>
@@ -109,81 +151,80 @@
 <body>
 
     <header>
-        <h1>懒洋洋和灰太狼的日记</h1>
+        <h1>懒洋洋和灰太狼的日记</h1> <!-- 标题 -->
     </header>
 
     <div class="diary-entry">
-        <h2>记录每一刻</h2>
-        <input type="date" id="diaryDate" />
-        <textarea id="diaryContent" placeholder="今天的心情和想法..."></textarea>
-        <button onclick="saveDiary()">保存日记</button>
+        <h2>记录每一刻</h2> <!-- 日记输入框标题 -->
+        <input type="date" id="diaryDate" /> <!-- 日期输入框 -->
+        <textarea id="diaryContent" placeholder="今天的心情和想法..."></textarea> <!-- 日记内容输入框 -->
+        <button onclick="saveDiary()">保存日记</button> <!-- 保存按钮 -->
     </div>
 
     <div id="diaryList">
-        <h2>日记记录</h2>
-        <ul id="entries"></ul>
+        <h2>日记记录</h2> <!-- 日记记录标题 -->
+        <ul id="entries"></ul> <!-- 日记记录列表 -->
     </div>
 
     <script>
         // 加载日记记录
         function loadDiary() {
-            const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+            const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || []; // 从localStorage加载日记记录
             const entries = document.getElementById('entries');
             entries.innerHTML = ''; // 清空现有列表
 
             diaryEntries.forEach((entry, index) => {
                 const li = document.createElement('li');
                 li.className = 'entry';
-                li.innerHTML = `${entry.date} ${entry.time}: ${entry.content}`;
+                li.innerHTML = `${entry.date} ${entry.time}: ${entry.content}`; // 显示日期、时间和内容
 
                 const deleteButton = document.createElement('button');
-                deleteButton.textContent = '删除';
+                deleteButton.textContent = '删除'; // 删除按钮文本
                 deleteButton.className = 'delete-button';
                 deleteButton.onclick = function () {
-                    deleteDiaryEntry(index);
+                    deleteDiaryEntry(index); // 绑定删除功能
                 };
 
-                li.appendChild(deleteButton);
-                entries.appendChild(li);
+                li.appendChild(deleteButton); // 将删除按钮添加到列表项
+                entries.appendChild(li); // 将列表项添加到记录列表
             });
         }
 
         // 保存日记记录
         function saveDiary() {
-            const date = document.getElementById('diaryDate').value;
-            const content = document.getElementById('diaryContent').value;
+            const date = document.getElementById('diaryDate').value; // 获取日期
+            const content = document.getElementById('diaryContent').value; // 获取内容
             const time = new Date().toLocaleTimeString(); // 获取当前时间
 
             if (date && content) {
-                const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
-                diaryEntries.push({ date, time, content });
-                localStorage.setItem('diaryEntries', JSON.stringify(diaryEntries));
+                const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || []; // 获取现有的日记记录
+                diaryEntries.push({ date, time, content }); // 添加新记录
+                localStorage.setItem('diaryEntries', JSON.stringify(diaryEntries)); // 保存到localStorage
 
                 // 清空输入框
-                document.getElementById('diaryDate').value = '';
-                document.getElementById('diaryContent').value = '';
+                document.getElementById('diaryDate').value = ''; // 清空日期输入框
+                document.getElementById('diaryContent').value = ''; // 清空内容输入框
 
                 // 重新加载日记记录
                 loadDiary();
             } else {
-                alert("请填写日期和日记内容！");
+                alert("请填写日期和日记内容！"); // 提示用户填写内容
             }
         }
 
         // 删除日记记录
         function deleteDiaryEntry(index) {
-            const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+            const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || []; // 获取现有的日记记录
 
             // 弹窗确认删除
             const confirmation = confirm("删了吧，哼(｡•́︿•̀｡)");
 
             if (confirmation) {
                 diaryEntries.splice(index, 1); // 删除指定索引的条目
-                localStorage.setItem('diaryEntries', JSON.stringify(diaryEntries));
+                localStorage.setItem('diaryEntries', JSON.stringify(diaryEntries)); // 更新localStorage
                 loadDiary(); // 重新加载日记记录
             }
         }
-
 
         // 页面加载时加载日记记录
         window.onload = loadDiary;
