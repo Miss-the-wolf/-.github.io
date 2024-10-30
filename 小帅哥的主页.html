@@ -5,12 +5,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>懒洋洋</title>
-    <link rel="stylesheet" href="{{ " /assets/css/style.css" | relative_url }}">
-    <link rel="icon" href="2.ico" type="image/x-icon"> <!-- 确保路径指向正确 -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="icon" href="2.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
 
+        header {
+            text-align: center;
+            padding: 20px;
+            background-image: url('色图.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0;
+            font-family: 'KaiTi', '楷体', sans-serif;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .web {
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+        }
+
+        /* 按钮样式 */
+        .jump-button {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            /* 按钮背景颜色 */
+            color: #fff;
+            /* 按钮字体颜色 */
+            border: none;
+            /* 去掉边框 */
+            border-radius: 5px;
+            /* 圆角 */
+            cursor: pointer;
+            /* 鼠标悬停时显示手形 */
+            font-size: 1em;
+            /* 字体大小 */
+            transition: background-color 0.3s, transform 0.3s;
+            /* 动画效果 */
+        }
+
+        .jump-button:hover {
+            background-color: #0056b3;
+            /* 悬停时背景颜色 */
+            transform: translateY(-2px);
+            /* 悬停时向上移动 */
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+                /* 小屏幕下字体变小 */
+            }
+
+            .avatar {
+                width: 60px;
+                /* 小屏幕下头像变小 */
+                height: 60px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <header>
+        <img src="../怪兽.jpg" alt="头像" class="avatar">
+        <h1>小帅哥的主页</h1>
+    </header>
+
     <main>
         <button id="myButton">点击灰太狼</button>
         <script>
@@ -18,97 +117,99 @@
                 window.location.href = "htl.html";
             };
         </script>
-        <h2>我的兴趣</h2>
-        <ul>
-            <li><a href="https://chatgpt.com/" target="_blank">ChatGPT</a></li>
-            <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-            <li><a href="https://translate.google.com/" target="_blank">翻译</a></li>
-            <li><a href="https://mail.google.com/" target="_blank">邮箱</a></li>
-            <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
-            <li><a href="https://www.coursera.org/" target="_blank">coursera</a></li>
-            <li><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/" target="_blank">CS50</a></li>
-            <li><a href="" target="_blank"></a></li>
-        </ul>
+
+        <!-- 添加跳转按钮 -->
         <div>
-            <h2>编程学习</h2>
+            <button class="jump-button" onclick="scrollToSection('interest')">我的兴趣</button>
+            <button class="jump-button" onclick="scrollToSection('programming')">编程学习</button>
+            <button class="jump-button" onclick="scrollToSection('interesting')">有趣的网站</button>
+            <button class="jump-button" onclick="scrollToSection('daily')">日常废料</button>
+            <button class="jump-button" onclick="scrollToSection('tech')">技术分享</button>
+            <button class="jump-button" onclick="scrollToSection('misc')">乱七八糟的东西</button>
+        </div>
+
+        <section id="interest" class="web">
+            <h2>我的兴趣</h2>
             <ul>
-                <li><a href="https://www.bilibili.com/video/BV1uN4y1W7Du/?spm_id_from=333.788.player.switch&vd_source=79c10329db7f66067b0d2b81e3b40a52&p=12"
-                        target="_blank">爬虫</a></li>
-                <li><a href="https://www.bilibili.com/video/BV1Kr4y1i7ru?vd_source=79c10329db7f66067b0d2b81e3b40a52&spm_id_from=333.788.videopod.episodes&p=37"
-                        target="_blank">MySQL</a></li>
-                <li><a href="https://www.bilibili.com/video/BV1pz421h7ZX/?spm_id_from=333.337.search-card.all.click&vd_source=79c10329db7f66067b0d2b81e3b40a52"
-                        target="_blank">算法</a></li>
-                <li><a href="https://www.bilibili.com/video/BV1Y84y1L7Nn/?spm_id_from=333.788.player.switch&vd_source=79c10329db7f66067b0d2b81e3b40a52&p=15"
-                        target="_blank">JS</a></li>
-                <li><a href="https://www.bilibili.com/video/BV1p84y1P7Z5/?vd_source=79c10329db7f66067b0d2b81e3b40a52&spm_id_from=333.788.player.switch&p=87"
-                        target="_blank">html+css</a></li>
-                <li><a href="https://www.bilibili.com/video/BV1qW4y1a7fU/?spm_id_from=333.788.player.switch&vd_source=79c10329db7f66067b0d2b81e3b40a52&p=152"
-                        target="_blank">Python</a></li>
-                <li><a href="https://markdown.com.cn/intro.html" target="_blank">.md</a></li>
-                <li><a href="https://leetcode.cn/" target="_blank">力扣</a></li>
-                <li><a href="https://www.w3school.com.cn/" target="_blank">W3C</a></li>
-                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JS开发文档</a></li>
-                <li><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/" target="_blank">微信小程序开发者文档</a>
-                <li><a href="" target="_blank"></a></li>
+                <li><a href="https://chatgpt.com/" target="_blank">ChatGPT</a></li>
+                <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+                <li><a href="https://translate.google.com/" target="_blank">翻译</a></li>
+                <li><a href="https://mail.google.com/" target="_blank">邮箱</a></li>
+                <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+                <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+                <li><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/" target="_blank">CS50</a>
                 </li>
             </ul>
-        </div>
-        <h2>有趣的网站</h2>
-        <p>快点开看看：</p>
-        <ul>
-            <li><a href="https://www.bilibili.com/">哔哩哔哩</a></li>
-            <li><a href="https://www.zhihu.com/">知乎</a></li>
-            <li><a href="https://movie.douban.com/">豆瓣电影</a></li>
-            <li><a href="https://book.douban.com/">豆瓣读书</a></li>
-            <li><a href="https://m.fx361.com/bk/yl/history_2024.html">杂志</a></li>
-            <li><a href="https://www.yixi.tv/" target="_blank">一席</a></li>
-            <li><a href="https://sspai.com/" target="_blank">少数派</a></li>
-            <li><a href="https://zhouql.vip/bilibili/" target="_blank">Bilidown</a></li>
-            <li><a href="" target="_blank"></a></li>
+        </section>
 
-        </ul>
+        <section id="programming" class="web">
+            <h2>编程学习</h2>
+            <ul>
+                <li><a href="https://www.bilibili.com/video/BV1uN4y1W7Du" target="_blank">爬虫</a></li>
+                <li><a href="https://www.bilibili.com/video/BV1Kr4y1i7ru" target="_blank">MySQL</a></li>
+                <li><a href="https://www.bilibili.com/video/BV1pz421h7ZX" target="_blank">算法</a></li>
+                <li><a href="https://www.bilibili.com/video/BV1Y84y1L7Nn" target="_blank">JS</a></li>
+                <li><a href="https://www.bilibili.com/video/BV1p84y1P7Z5" target="_blank">HTML + CSS</a></li>
+                <li><a href="https://www.bilibili.com/video/BV1qW4y1a7fU" target="_blank">Python</a></li>
+            </ul>
+        </section>
 
-        <div>
-            <h2> 日常废料</h2>
+        <section id="interesting" class="web">
+            <h2>有趣的网站</h2>
+            <p>快点开看看：</p>
+            <ul>
+                <li><a href="https://www.bilibili.com/" target="_blank">哔哩哔哩</a></li>
+                <li><a href="https://www.zhihu.com/" target="_blank">知乎</a></li>
+                <li><a href="https://movie.douban.com/" target="_blank">豆瓣电影</a></li>
+                <li><a href="https://book.douban.com/" target="_blank">豆瓣读书</a></li>
+                <li><a href="https://m.fx361.com/bk/yl/history_2024.html" target="_blank">杂志</a></li>
+                <li><a href="https://www.yixi.tv/" target="_blank">一席</a></li>
+            </ul>
+        </section>
+
+        <section id="daily" class="web">
+            <h2>日常废料</h2>
             <ul>
                 <li><a href="https://i.chaoxing.com/" target="_blank">学习通</a></li>
                 <li><a href="https://www.doubao.com/chat/" target="_blank">豆包</a></li>
                 <li><a href="https://www.educoder.net/users/pvfjtgb6k/classrooms" target="_blank">头歌</a></li>
                 <li><a href="https://ucloud.unipus.cn/home" target="_blank">u校园AI</a></li>
-                <li><a href="" target="_blank"></a></li>
-        </div>
-        </ul>
-        </div>
+            </ul>
+        </section>
 
-        <div>
+        <section id="tech" class="web">
             <h2>技术分享</h2>
             <ul>
                 <li><a href="http://oeasy.org/" target="_blank">oeasy</a></li>
                 <li><a href="https://www.52pojie.cn/index.php" target="_blank">吾爱</a></li>
                 <li><a href="https://www.cnblogs.com/" target="_blank">博客园</a></li>
-                <li><a href="http://www.4243.net/" target="_blank">小虫虫导航</a></li>
-                <li><a href="https://www.cnki.net/" target="_blank">知网</a></li>
-                <li><a href="https://mail.qq.com/" target="_blank">qq邮箱</a></li>
-                <li><a href="" target="_blank"></a></li>
             </ul>
-        </div>
-        <div>
+        </section>
+
+        <section id="misc" class="web">
             <h2>乱七八糟的东西</h2>
             <ul>
                 <li><a href="https://mp.weixin.qq.com/" target="_blank">小程序</a></li>
                 <li><a href="https://www.ghxi.com/" target="_blank">果壳剥壳</a></li>
-                <li><a href="" target="_blank"></a></li>
             </ul>
-        </div>
+        </section>
     </main>
+
     <a href="#">回到顶部</a>
     <a href="tel:13453527705">电话联系</a>
-    <a href="123456@qq.com">邮箱联系</a>
+    <a href="mailto:123456@qq.com">邮箱联系</a>
     <a href="sms:13363429451">短信联系</a>
     <hr>
+
     <footer>
-        <p>&copy 2024.7.18 懒洋洋和灰太狼</p>
+        <p>&copy; 2024.7.18 懒洋洋和灰太狼</p>
     </footer>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 
 </html>
