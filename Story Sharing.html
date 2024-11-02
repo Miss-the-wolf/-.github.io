@@ -113,11 +113,31 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            z-index: 1000;
+            /* 确保按钮在其他元素之上 */
         }
 
         .scroll-top:hover {
             background-color: #0056b3;
             /* 悬停时颜色 */
+        }
+
+        /* 响应式样式 */
+        @media (max-width: 600px) {
+            .story-container {
+                padding: 20px;
+                /* 在小屏幕上减少内边距 */
+            }
+
+            .story-title {
+                font-size: 18px;
+                /* 调整标题字体大小 */
+            }
+
+            .story-time {
+                font-size: 0.8em;
+                /* 调整时间字体大小 */
+            }
         }
     </style>
 </head>
@@ -164,7 +184,6 @@
     <button class="scroll-top" aria-label="回到顶部" onclick="scrollToTop()">回到顶部</button>
 
     <script>
-
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
