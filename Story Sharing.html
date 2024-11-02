@@ -11,62 +11,63 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #ebe5ea;
-            /* 设置背景颜色 */
+            background-image: url('./Images/龙图.png');
+            /* 替换为你的自定义图片路径 */
+            background-size: cover;
+            /* 让背景图覆盖整个页面 */
+            background-position: center;
+            /* 背景图居中 */
         }
+
 
         h1 {
             text-align: center;
+            color: rgb(95, 135, 65);
+            font-family: "楷体";
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #ff5733, #33c4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
         }
 
         .story-container {
-            max-width: 800px;
-            /* 增加最大宽度 */
+            max-width: 600px;
             margin: auto;
             padding: 40px;
-            /* 增加内边距 */
+            background-color: transparent;
+            /* 设置背景为透明 */
         }
 
         .story {
             margin-bottom: 20px;
-            background-color: white;
-            /* 设置故事背景为白色 */
+            background-color: rgba(224, 216, 216, 0.8);
+            /* 设置为稍微透明 */
             padding: 20px;
-            /* 添加内边距 */
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             display: flex;
-            /* 使用 Flexbox 布局 */
             align-items: center;
-            /* 垂直居中对齐 */
             flex-direction: column;
-            /* 纵向排列 */
         }
+
 
         .story-header {
             display: flex;
-            /* 使用 Flexbox 布局 */
             align-items: center;
-            /* 垂直居中对齐 */
             width: 100%;
-            /* 使标题和时间占满宽度 */
         }
 
         .story-info {
             display: flex;
-            /* 使用 Flexbox 布局 */
             flex-direction: column;
-            /* 纵向排列 */
             margin-left: 10px;
-            /* 给头像和信息之间添加左边距 */
         }
 
         .story-title {
-            color: rgba(205, 191, 31, 0.9);
+            color: rgba(147, 139, 41, 0.9);
             font-family: "楷体", "serif";
             font-size: 20px;
             text-decoration: none;
-            /* 去掉下划线 */
         }
 
         .story-time {
@@ -76,68 +77,90 @@
 
         .avatar {
             width: 50px;
-            /* 设置头像宽度 */
             height: 50px;
-            /* 设置头像高度 */
             border-radius: 50%;
-            /* 使头像为圆形 */
             cursor: pointer;
-            /* 鼠标悬停时变成手型 */
         }
 
-        img.story-image {
-            max-width: 100%;
-            /* 图片自适应宽度 */
+        .story-image {
+            width: 150px;
+            /* 设置固定宽度 */
             height: auto;
             /* 保持纵横比 */
             margin-top: 10px;
-            /* 图片上边距 */
+            opacity: 0.7;
+            /* 设置透明度 */
         }
+
+
 
         a {
             text-decoration: none;
-            /* 去掉所有链接的下划线 */
         }
 
-        /* 回到顶部按钮样式 */
         .scroll-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
             background-color: #007bff;
-            /* 蓝色背景 */
             color: white;
-            /* 白色字体 */
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            z-index: 1000;
-            /* 确保按钮在其他元素之上 */
         }
 
         .scroll-top:hover {
             background-color: #0056b3;
-            /* 悬停时颜色 */
         }
 
-        /* 响应式样式 */
-        @media (max-width: 600px) {
-            .story-container {
-                padding: 20px;
-                /* 在小屏幕上减少内边距 */
-            }
+        p {
+            color: #333;
+        }
 
-            .story-title {
-                font-size: 18px;
-                /* 调整标题字体大小 */
-            }
+        .story-text {
+            color: #4e4c33;
+        }
 
-            .story-time {
-                font-size: 0.8em;
-                /* 调整时间字体大小 */
-            }
+        .music-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 30px;
+            background-image: url('./Images/纸嫁衣.jpg');
+            background-size: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            height: 60px;
+            font-size: 14px;
+            color: white;
+            text-align: center;
+        }
+
+        .music-controls button {
+            position: absolute;
+            /* 设置为绝对定位 */
+            bottom: 5px;
+            /* 距离底部的距离 */
+            left: 5px;
+            /* 距离左边的距离 */
+            width: 40px;
+            /* 调整按钮宽度 */
+            height: 30px;
+            /* 调整按钮高度 */
+            margin: 0;
+            /* 去掉外边距 */
+            font-size: 12px;
+            /* 调整字体大小 */
+            cursor: pointer;
+            background: transparent;
+            /* 设置背景为透明 */
+            border: none;
+            /* 去除边框 */
+            color: white;
+            /* 字体颜色 */
         }
     </style>
 </head>
@@ -146,44 +169,84 @@
 
     <h1>故事分享</h1>
 
-    <div class="story-container">
-
-        <article class="story">
-            <div class="story-header">
-                <a href="encounter.html">
-                    <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
-                </a>
-                <div class="story-info">
-                    <span>
-                        <a href="./Stories/story1.html" class="story-title">梦开始的地方</a>
-                    </span>
-                    <span class="story-time">&nbsp2024年11月1日</span>
+    <div style="display: flex;">
+        <div class="story-container">
+            <article class="story">
+                <div class="story-header">
+                    <a href="encounter.html">
+                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
+                    </a>
+                    <div class="story-info">
+                        <span>
+                            <a href="./Stories/story1.html" class="story-title">梦开始的地方</a>
+                        </span>
+                        <span class="story-time">&nbsp2024年11月1日</span>
+                    </div>
                 </div>
-            </div>
-            <img src="./Images/怪兽.jpg" alt="故事图片" class="story-image">
-        </article>
+                <img src="./Images/怪兽.jpg" alt="故事图片" class="story-image">
+            </article>
 
-        <article class="story">
-            <div class="story-header">
-                <a href="encounter.html">
-                    <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
-                </a>
-                <div class="story-info">
-                    <span>
-                        <a href="./Stories/story2.html" class="story-title">无聊的一天</a>
-                    </span>
-                    <span class="story-time">&nbsp2024年11月2日</span>
+            <article class="story">
+                <div class="story-header">
+                    <a href="encounter.html">
+                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
+                    </a>
+                    <div class="story-info">
+                        <span>
+                            <a href="./Stories/story2.html" class="story-title">无聊的一天</a>
+                        </span>
+                        <span class="story-time">&nbsp2024年11月2日</span>
+                    </div>
                 </div>
-            </div>
-            <img src="./Images/奥特曼.jpg" alt="故事图片" class="story-image">
-            <p>睡了一上午，十点半才起，踢球到3点，颇有长进吧，还是挺菜，又瞎搞了一下午，时间过得真快，干饭去。</p>
-        </article>
+                <img src="./Images/奥特曼.jpg" alt="故事图片" class="story-image">
+                <p class="story-text">睡了一上午，十点半才起，踢球到3点，颇有长进吧，还是挺菜，又瞎搞了一下午，时间过得真快，干饭去。</p>
+            </article>
+        </div>
+
+        <div class="music-controls">
+            <button id="music-toggle" onclick="toggleMusic()">播放</button>
+            <audio id="background-music" preload="auto" loop>
+                <source src="./Music/shortage.mp3" type="audio/mpeg">
+                您的浏览器不支持音频元素。
+            </audio>
+        </div>
+
 
     </div>
 
     <button class="scroll-top" aria-label="回到顶部" onclick="scrollToTop()">回到顶部</button>
 
     <script>
+        let isPlaying = false; // 音乐是否在播放
+
+        function toggleMusic() {
+            const audio = document.getElementById('background-music');
+            const button = document.getElementById('music-toggle');
+            if (isPlaying) {
+                audio.pause(); // 暂停音乐
+                button.textContent = "播放"; // 更新按钮文本
+            } else {
+                audio.play(); // 播放音乐
+                button.textContent = "暂停"; // 更新按钮文本
+            }
+            isPlaying = !isPlaying; // 切换播放状态
+        }
+
+        window.onload = function () {
+            playMusic(); // 页面加载时自动播放音乐
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth' // 平滑滚动
+            });
+        };
+
+        function playMusic() {
+            const audio = document.getElementById('background-music');
+            audio.play(); // 播放音乐
+            isPlaying = true; // 设置播放状态为 true
+            document.getElementById('music-toggle').textContent = "暂停"; // 更新按钮文本
+        }
+
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -191,12 +254,6 @@
             });
         }
 
-        window.onload = function () {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth' // 平滑滚动
-            });
-        };
     </script>
 
 </body>
