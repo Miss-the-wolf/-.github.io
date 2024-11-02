@@ -98,6 +98,27 @@
             text-decoration: none;
             /* 去掉所有链接的下划线 */
         }
+
+        /* 回到顶部按钮样式 */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            /* 蓝色背景 */
+            color: white;
+            /* 白色字体 */
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .scroll-top:hover {
+            background-color: #0056b3;
+            /* 悬停时颜色 */
+        }
     </style>
 </head>
 
@@ -107,12 +128,11 @@
 
     <div class="story-container">
 
-        <div class="story">
+        <article class="story">
             <div class="story-header">
                 <a href="encounter.html">
                     <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
                 </a>
-
                 <div class="story-info">
                     <span>
                         <a href="./Stories/story1.html" class="story-title">梦开始的地方</a>
@@ -120,14 +140,38 @@
                     <span class="story-time">&nbsp2024年11月1日</span>
                 </div>
             </div>
-
             <img src="./Images/怪兽.jpg" alt="故事图片" class="story-image">
-            <!-- <p>这是第一个故事的内容。</p> -->
-        </div>
+        </article>
+
+        <article class="story">
+            <div class="story-header">
+                <a href="encounter.html">
+                    <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
+                </a>
+                <div class="story-info">
+                    <span>
+                        <a href="./Stories/story2.html" class="story-title">无聊的一天</a>
+                    </span>
+                    <span class="story-time">&nbsp2024年11月2日</span>
+                </div>
+            </div>
+            <img src="./Images/奥特曼.jpg" alt="故事图片" class="story-image">
+            <p>睡了一上午，十点半才起，踢球到3点，颇有长进吧，还是挺菜，又瞎搞了一下午，时间过得真快，干饭去。</p>
+        </article>
 
     </div>
 
+    <button class="scroll-top" aria-label="回到顶部" onclick="scrollToTop()">回到顶部</button>
+
     <script>
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 平滑滚动
+            });
+        }
+
         window.onload = function () {
             window.scrollTo({
                 top: document.body.scrollHeight,
