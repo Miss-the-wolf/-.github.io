@@ -30,6 +30,8 @@
         /* 导航栏样式 */
         .navbar {
             display: flex;
+            flex-wrap: wrap;
+            /* 允许换行 */
             justify-content: center;
             background-color: rgba(255, 255, 255, 0);
             padding: 5px 0;
@@ -50,21 +52,28 @@
 
         .navbar button {
             margin: 0 5px;
-            /* 减少按钮间距 */
-            padding: 8px 10px;
-            /* 缩小按钮内边距 */
-            font-size: 18px;
-            /* 缩小字体大小 */
-            background-color: rgba(144, 109, 224, 0.8);
+            /* 按钮间距 */
+            padding: 5px 10px;
+            /* 按钮内边距 */
+            font-size: 14px;
+            /* 字体大小 */
+            background-color: rgba(52, 152, 219, 0.3);
+            /* 调整为更透明的背景颜色 */
             color: white;
+            /* 字体颜色 */
             border: none;
+            /* 无边框 */
             border-radius: 5px;
+            /* 圆角 */
             cursor: pointer;
+            /* 鼠标悬停效果 */
             transition: background-color 0.3s;
+            /* 背景颜色变化 */
         }
 
         .navbar button:hover {
-            background-color: rgba(41, 128, 185, 0.8);
+            background-color: rgba(41, 128, 185, 0.5);
+            /* 悬停时的背景颜色透明度保持一致 */
         }
 
 
@@ -74,6 +83,43 @@
             background-color: #bea6a6;
             font-family: Arial, sans-serif;
             margin: 0;
+        }
+
+        /* 针对小屏幕的样式 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+                /* 减小标题字体大小 */
+            }
+
+            .navbar {
+                flex-direction: column;
+                /* 垂直排列导航栏按钮 */
+            }
+
+            .navbar button {
+                width: 100%;
+                /* 按钮宽度设为 100% */
+                margin: 5px 0;
+                /* 按钮间距 */
+            }
+
+            .story-image {
+                width: 100%;
+                /* 让故事图片宽度自适应 */
+                height: auto;
+                /* 保持纵横比 */
+            }
+
+            #clock {
+                font-size: 20px;
+                /* 减小时钟字体大小 */
+            }
+
+            #date {
+                font-size: 14px;
+                /* 减小日期字体大小 */
+            }
         }
 
         #clock {
