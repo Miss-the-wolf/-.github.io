@@ -88,9 +88,18 @@
             height: auto;
             /* 保持纵横比 */
             margin-top: 10px;
-            opacity: 0.7;
-            /* 设置透明度 */
+            opacity: 0.5;
+            /* 设置透明度，值范围为 0（完全透明）到 1（完全不透明） */
+            transition: opacity 0.3s;
+            /* 添加过渡效果 */
         }
+
+        /* 可选：当用户悬停在图片上时，增加透明度 */
+        .story-image:hover {
+            opacity: 0.7;
+            /* 悬停时变得稍微不透明 */
+        }
+
 
 
 
@@ -121,7 +130,16 @@
 
         .story-text {
             color: #4e4c33;
+            margin: 10px 0;
+            /* 上下边距 */
+            padding: 10px;
+            /* 内边距 */
+            background-color: rgba(212, 191, 191, 0.8);
+            /* 可选：添加背景色以提高可读性 */
+            border-radius: 5px;
+            /* 圆角 */
         }
+
 
         .music-controls {
             position: absolute;
@@ -217,60 +235,60 @@
                 <img src="./Images/崩溃.png" alt="故事图片" class="story-image">
                 <p class="story-text">受不了了，能他妈踢成这么个吊样，被戏耍，菜出天际，真是废。</p>
             </article>
+
+
+            <div class="music-controls">
+                <button id="music-toggle" onclick="toggleMusic()">播放</button>
+                <audio id="background-music" preload="auto" loop>
+                    <source src="./Music/shortage.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频元素。
+                </audio>
+            </div>
+
+
         </div>
 
-        <div class="music-controls">
-            <button id="music-toggle" onclick="toggleMusic()">播放</button>
-            <audio id="background-music" preload="auto" loop>
-                <source src="./Music/shortage.mp3" type="audio/mpeg">
-                您的浏览器不支持音频元素。
-            </audio>
-        </div>
+        <button class="scroll-top" aria-label="回到顶部" onclick="scrollToTop()">回到顶部</button>
 
+        <script>
+            let isPlaying = false; // 音乐是否在播放
 
-    </div>
-
-    <button class="scroll-top" aria-label="回到顶部" onclick="scrollToTop()">回到顶部</button>
-
-    <script>
-        let isPlaying = false; // 音乐是否在播放
-
-        function toggleMusic() {
-            const audio = document.getElementById('background-music');
-            const button = document.getElementById('music-toggle');
-            if (isPlaying) {
-                audio.pause(); // 暂停音乐
-                button.textContent = "播放"; // 更新按钮文本
-            } else {
-                audio.play(); // 播放音乐
-                button.textContent = "暂停"; // 更新按钮文本
+            function toggleMusic() {
+                const audio = document.getElementById('background-music');
+                const button = document.getElementById('music-toggle');
+                if (isPlaying) {
+                    audio.pause(); // 暂停音乐
+                    button.textContent = "播放"; // 更新按钮文本
+                } else {
+                    audio.play(); // 播放音乐
+                    button.textContent = "暂停"; // 更新按钮文本
+                }
+                isPlaying = !isPlaying; // 切换播放状态
             }
-            isPlaying = !isPlaying; // 切换播放状态
-        }
 
-        window.onload = function () {
-            playMusic(); // 页面加载时自动播放音乐
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth' // 平滑滚动
-            });
-        };
+            window.onload = function () {
+                playMusic(); // 页面加载时自动播放音乐
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth' // 平滑滚动
+                });
+            };
 
-        function playMusic() {
-            const audio = document.getElementById('background-music');
-            audio.play(); // 播放音乐
-            isPlaying = true; // 设置播放状态为 true
-            document.getElementById('music-toggle').textContent = "暂停"; // 更新按钮文本
-        }
+            function playMusic() {
+                const audio = document.getElementById('background-music');
+                audio.play(); // 播放音乐
+                isPlaying = true; // 设置播放状态为 true
+                document.getElementById('music-toggle').textContent = "暂停"; // 更新按钮文本
+            }
 
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // 平滑滚动
-            });
-        }
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // 平滑滚动
+                });
+            }
 
-    </script>
+        </script>
 
 </body>
 
