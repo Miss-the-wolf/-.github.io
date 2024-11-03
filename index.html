@@ -11,10 +11,11 @@
         h1 {
             font-family: 'KaiTi', serif;
             /* 使用楷体 */
-            color: #c09341;
+            color: #c19e5d;
             /* 设置标题颜色 */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             /* 添加阴影效果 */
+            font-size: 55px;
         }
 
         p {
@@ -24,7 +25,7 @@
             /* 设置段落颜色 */
             line-height: 1.6;
             /* 增加行间距 */
-            font-size: 20px;
+            font-size: 24px;
         }
 
         /* 导航栏样式 */
@@ -76,14 +77,46 @@
             /* 悬停时的背景颜色透明度保持一致 */
         }
 
+        /* 搜索栏 */
+
+        button {
+            padding: 7px 10px;
+            /* 按钮内边距 */
+            background-color: #b75e6b;
+            /* 按钮背景颜色 */
+            color: white;
+            /* 按钮字体颜色 */
+            border: none;
+            /* 去掉按钮边框 */
+            border-radius: 5px;
+            /* 圆角 */
+            cursor: pointer;
+            /* 鼠标悬停时变为手型 */
+            font-size: 10px;
+            /* 字体大小 */
+            margin-left: 8px;
+            /* 按钮与输入框之间的间距 */
+            transition: background-color 0.3s;
+            /* 背景颜色变化过渡 */
+        }
+
+        button:hover {
+            background-color: #c19e5d;
+            /* 悬停时的按钮背景颜色 */
+        }
+
+
 
         body {
             position: relative;
             height: 100vh;
-            background-color: #bea6a6;
+            background-image: url('./Images/龙猫.png');
+            background-size: cover;
+            background-position: center;
             font-family: Arial, sans-serif;
             margin: 0;
         }
+
 
         /* 针对小屏幕的样式 */
         @media (max-width: 600px) {
@@ -146,12 +179,12 @@
 
         header {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 1%;
         }
 
         main {
             text-align: center;
-            margin: 20px;
+            margin-top: 20px;
         }
 
         button {
