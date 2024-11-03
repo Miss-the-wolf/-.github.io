@@ -352,10 +352,35 @@
             background-color: rgb(220, 213, 213);
             /* 秒针样式 */
         }
+
+        #toggleMusic {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(52, 152, 219, 0.7);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #toggleMusic:hover {
+            background-color: rgba(41, 128, 185, 0.9);
+        }
     </style>
 </head>
 
 <body>
+
+    <audio id="backgroundMusic" loop>
+        <source src="./Music/白鸽乌鸦相爱的戏码.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <button id="toggleMusic">音乐</button>
+
     <form action="https://www.baidu.com/s" target="target">
         <input type="text" name="wd" placeholder="请输入搜索内容">
         <button>百度搜索</button>
@@ -500,7 +525,34 @@
         document.getElementById("button7").onclick = function () {
             window.location.href = "Story Sharing.html";
         };
+
+
     </script>
+
+    <script>
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const toggleMusicButton = document.getElementById('toggleMusic');
+
+        // 当页面加载时自动播放音乐
+        window.onload = function () {
+            backgroundMusic.play().catch(error => {
+                console.log('自动播放音乐失败:', error);
+            });
+        };
+
+        // 切换播放状态
+        toggleMusicButton.onclick = function () {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                toggleMusicButton.textContent = '暂停音乐'; // 更新按钮文本
+            } else {
+                backgroundMusic.pause();
+                toggleMusicButton.textContent = '播放音乐'; // 更新按钮文本
+            }
+        };
+    </script>
+
+
 </body>
 
 </html>
