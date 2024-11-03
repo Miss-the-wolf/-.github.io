@@ -533,11 +533,19 @@
         const backgroundMusic = document.getElementById('backgroundMusic');
         const toggleMusicButton = document.getElementById('toggleMusic');
 
-        // 当页面加载时自动播放音乐
+        // 当页面加载时恢复音乐进度并自动播放
         window.onload = function () {
-            backgroundMusic.play().catch(error => {
-                console.log('自动播放音乐失败:', error);
-            });
+            const savedTime = localStorage.getItem('musicTime');
+            if (savedTime) {
+                backgroundMusic.currentTime = parseFloat(savedTime);
+            }
+
+            // 尝试自动播放音乐
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().catch(error => {
+                    console.log('自动播放音乐失败:', error);
+                });
+            }
         };
 
         // 切换播放状态
@@ -550,7 +558,16 @@
                 toggleMusicButton.textContent = '播放音乐'; // 更新按钮文本
             }
         };
+
+        // 每秒保存当前播放进度
+        setInterval(() => {
+            if (!backgroundMusic.paused) {
+                localStorage.setItem('musicTime', backgroundMusic.currentTime);
+            }
+        }, 1000);
     </script>
+
+
 
 
 </body>
