@@ -12,13 +12,9 @@
             margin: 0;
             padding: 20px;
             background-image: url('./Images/龙图.png');
-            /* 替换为你的自定义图片路径 */
             background-size: cover;
-            /* 让背景图覆盖整个页面 */
             background-position: center;
-            /* 背景图居中 */
         }
-
 
         h1 {
             text-align: center;
@@ -35,13 +31,11 @@
             margin: auto;
             padding: 40px;
             background-color: transparent;
-            /* 设置背景为透明 */
         }
 
         .story {
             margin-bottom: 20px;
             background-color: rgba(224, 216, 216, 0.8);
-            /* 设置为稍微透明 */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(87, 73, 73, 0.1);
@@ -49,7 +43,6 @@
             align-items: center;
             flex-direction: column;
         }
-
 
         .story-header {
             display: flex;
@@ -84,24 +77,15 @@
 
         .story-image {
             width: 150px;
-            /* 设置固定宽度 */
             height: auto;
-            /* 保持纵横比 */
             margin-top: 10px;
             opacity: 0.5;
-            /* 设置透明度，值范围为 0（完全透明）到 1（完全不透明） */
             transition: opacity 0.3s;
-            /* 添加过渡效果 */
         }
 
-        /* 可选：当用户悬停在图片上时，增加透明度 */
         .story-image:hover {
             opacity: 0.7;
-            /* 悬停时变得稍微不透明 */
         }
-
-
-
 
         a {
             text-decoration: none;
@@ -131,15 +115,10 @@
         .story-text {
             color: #4e4c33;
             margin: 10px 0;
-            /* 上下边距 */
             padding: 10px;
-            /* 内边距 */
             background-color: rgba(212, 191, 191, 0.8);
-            /* 可选：添加背景色以提高可读性 */
             border-radius: 5px;
-            /* 圆角 */
         }
-
 
         .music-controls {
             position: absolute;
@@ -159,26 +138,16 @@
 
         .music-controls button {
             position: absolute;
-            /* 设置为绝对定位 */
             bottom: 5px;
-            /* 距离底部的距离 */
             left: 5px;
-            /* 距离左边的距离 */
             width: 40px;
-            /* 调整按钮宽度 */
             height: 30px;
-            /* 调整按钮高度 */
             margin: 0;
-            /* 去掉外边距 */
             font-size: 12px;
-            /* 调整字体大小 */
             cursor: pointer;
             background: transparent;
-            /* 设置背景为透明 */
             border: none;
-            /* 去除边框 */
             color: white;
-            /* 字体颜色 */
         }
     </style>
 </head>
@@ -236,7 +205,6 @@
                 <p class="story-text">受不了了，能他妈踢成这么个吊样，被戏耍，菜出天际，真是废。</p>
             </article>
 
-
             <div class="music-controls">
                 <button id="music-toggle" onclick="toggleMusic()">播放</button>
                 <audio id="background-music" preload="auto" loop>
@@ -244,8 +212,6 @@
                     您的浏览器不支持音频元素。
                 </audio>
             </div>
-
-
         </div>
 
         <button class="scroll-top" aria-label="回到顶部" onclick="scrollToTop()">回到顶部</button>
@@ -267,19 +233,31 @@
             }
 
             window.onload = function () {
-                playMusic(); // 页面加载时自动播放音乐
+                const savedTime = localStorage.getItem('musicTime');
+                const audio = document.getElementById('background-music');
+
+                if (savedTime) {
+                    audio.currentTime = parseFloat(savedTime);
+                    audio.play().catch(error => {
+                        console.log('自动播放音乐失败:', error);
+                    });
+                    isPlaying = true;
+                    document.getElementById('music-toggle').textContent = "暂停"; // 更新按钮文本
+                }
+
                 window.scrollTo({
                     top: document.body.scrollHeight,
                     behavior: 'smooth' // 平滑滚动
                 });
             };
 
-            function playMusic() {
-                const audio = document.getElementById('background-music');
-                audio.play(); // 播放音乐
-                isPlaying = true; // 设置播放状态为 true
-                document.getElementById('music-toggle').textContent = "暂停"; // 更新按钮文本
-            }
+            // 每500毫秒保存当前播放进度
+            setInterval(() => {
+                if (isPlaying) {
+                    const audio = document.getElementById('background-music');
+                    localStorage.setItem('musicTime', audio.currentTime);
+                }
+            }, 500);
 
             function scrollToTop() {
                 window.scrollTo({
@@ -287,7 +265,6 @@
                     behavior: 'smooth' // 平滑滚动
                 });
             }
-
         </script>
 
 </body>
