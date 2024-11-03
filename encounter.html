@@ -11,18 +11,31 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-image: url('./Images/04.png');
+            background-size: cover;
+            background-position: center;
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            font-family: '楷体', sans-serif;
+            color: #1ea0cc;
+        }
+
+        .info h2 {
+            /* text-align: center; */
+            /* 使标题居中 */
+            font-family: '楷体', serif;
+            /* 设置字体为楷体 */
+            color: #b80f0f;
+            /* 可根据需要调整颜色 */
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            /* 半透明白色背景 */
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -33,7 +46,7 @@
         }
 
         .info h2 {
-            color: #555;
+            color: #512d2d;
         }
 
         .info p {
@@ -43,16 +56,25 @@
         .button-container {
             display: flex;
             justify-content: center;
-            /* 使按钮居中对齐 */
             margin: 20px 0;
-            /* 按钮上下边距 */
         }
 
         button {
             padding: 10px 15px;
             font-size: 16px;
             margin: 0 10px;
-            /* 按钮左右间距 */
+            background-color: rgba(206, 31, 31, 0.8);
+            /* 半透明按钮背景 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgba(206, 31, 31, 1);
+            /* 悬停时不透明 */
         }
     </style>
 </head>
@@ -61,7 +83,7 @@
     <h1>大音希声，大象无形</h1>
 
     <div class="container">
-        <h1>About Me</h1>
+        <h2>About Me:</h2>
 
         <div class="info">
             <h2>个人简介</h2>
@@ -99,34 +121,27 @@
 
     <script>
         function openQQ() {
-            const qqNumber = "2151294664"; // 替换为你的QQ号码
+            const qqNumber = "2151294664";
             const qqUrl = `mqq://im/chat?chat_type=wpa&uin=${qqNumber}`;
 
-            // 复制 QQ 号码到剪贴板
             navigator.clipboard.writeText(qqNumber).then(() => {
-                // 尝试跳转到 QQ 应用
                 window.location.href = qqUrl;
-
-                // 提示用户已复制
                 alert('QQ号码已复制到剪贴板！');
-
-                // 如果跳转失败，可以提示用户手动打开
                 setTimeout(() => {
                     alert('如果没有跳转，请手动打开 QQ，并搜索号码 ' + qqNumber);
                 }, 2000);
             }).catch(err => {
-                alert('复制失败！请手动复制号码：' + qqNumber); // 处理复制失败
+                alert('复制失败！请手动复制号码：' + qqNumber);
             });
         }
 
         function copyPhone() {
-            const phoneNumber = "13363429451"; // 替换为你的电话号码
+            const phoneNumber = "13363429451";
 
-            // 复制电话号码到剪贴板
             navigator.clipboard.writeText(phoneNumber).then(() => {
                 alert('电话号码已复制到剪贴板！');
             }).catch(err => {
-                alert('复制失败！请手动复制号码：' + phoneNumber); // 处理复制失败
+                alert('复制失败！请手动复制号码：' + phoneNumber);
             });
         }
     </script>
