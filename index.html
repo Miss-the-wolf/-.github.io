@@ -8,10 +8,70 @@
     <title>无敌小帅哥的博客</title>
 
     <style>
+        h1 {
+            font-family: 'KaiTi', serif;
+            /* 使用楷体 */
+            color: #c09341;
+            /* 设置标题颜色 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            /* 添加阴影效果 */
+        }
+
+        p {
+            font-family: 'Arial', sans-serif;
+            /* 使用 Arial 字体 */
+            color: #b25563;
+            /* 设置段落颜色 */
+            line-height: 1.6;
+            /* 增加行间距 */
+            font-size: 20px;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0);
+            padding: 5px 0;
+            /* 缩小内边距 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: auto;
+            /* 将宽度设为自动 */
+            max-width: 1000px;
+            /* 设置最大宽度 */
+            top: 0;
+            left: 50%;
+            /* 将左边距设为50% */
+            transform: translateX(-50%);
+            /* 使其向左移动自身宽度的一半，实现居中 */
+            z-index: 1000;
+        }
+
+        .navbar button {
+            margin: 0 5px;
+            /* 减少按钮间距 */
+            padding: 8px 10px;
+            /* 缩小按钮内边距 */
+            font-size: 18px;
+            /* 缩小字体大小 */
+            background-color: rgba(144, 109, 224, 0.8);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .navbar button:hover {
+            background-color: rgba(41, 128, 185, 0.8);
+        }
+
+
         body {
             position: relative;
             height: 100vh;
-            background-color: #e3dddd;
+            background-color: #bea6a6;
             font-family: Arial, sans-serif;
             margin: 0;
         }
@@ -35,7 +95,7 @@
             right: 5px;
             padding: 8px;
             font-size: 16px;
-            color: #555;
+            color: #241c1c;
         }
 
         header {
@@ -56,11 +116,18 @@
     <style>
         /* 设置页面基本样式 */
         body {
-            margin: 0;
-            /* 移除默认边距 */
+            position: relative;
             height: 100vh;
-            /* 让页面占满整个视口高度 */
+            background-image: url('./Images/龙猫.png');
+            /* 替换为你的自定义图片路径 */
+            background-size: cover;
+            /* 背景图覆盖整个页面 */
+            background-position: center;
+            /* 背景图居中 */
+            font-family: Arial, sans-serif;
+            margin: 0;
         }
+
 
         /* 钟表容器样式 */
         .clock {
@@ -317,7 +384,7 @@
         <p>欢迎来到我的博客！我是 <strong>懒洋洋</strong>，一个热爱编程和分享的人。</p>
     </main>
 
-    <div style="text-align: center;">
+    <div class="navbar">
         <button id="button1">小帅哥的主页</button>
         <button id="button2">懒洋洋</button>
         <button id="button3">灰太狼</button>
