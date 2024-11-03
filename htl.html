@@ -7,23 +7,36 @@
     <title>一个大聪明</title>
     <link rel="icon" href="tb.ico" type="image/x-icon">
     <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            /* 设置背景颜色 */
-            margin: 0;
-            padding: 20px;
+            background-image: url('./Images/01.png');
+            background-size: cover;
+            /* 背景图覆盖整个页面 */
+            background-position: center;
+            /* 背景图居中 */
+            background-repeat: no-repeat;
+            /* 不重复背景图像 */
             text-align: center;
             /* 使内容居中 */
+            display: flex;
+            /* 使用 flexbox 使内容居中 */
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+            /* 垂直居中 */
         }
 
         h1 {
-            color: #333;
+            color: #4de783;
             /* 设置标题颜色 */
             font-size: 2.5em;
             /* 设置标题大小 */
-            margin-top: 50px;
-            /* 上边距 */
         }
 
         .button {
@@ -31,27 +44,34 @@
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 1.2em;
-            color: white;
-            background-color: #ce1f1f;
-            /* 按钮颜色 */
+            color: rgb(238, 234, 236);
+            background-color: transparent;
+            /* 按钮背景透明 */
             border: none;
+            /* 去掉边框 */
             border-radius: 5px;
             cursor: pointer;
             /* 鼠标指针样式 */
             text-decoration: none;
             /* 去掉链接下划线 */
+            transition: background-color 0.3s, color 0.3s;
+            /* 添加过渡效果 */
         }
 
         .button:hover {
-            background-color: #b41c1c;
-            /* 鼠标悬停时颜色 */
+            background-color: rgba(181, 65, 65, 0.7);
+            /* 悬停时的背景颜色 */
+            color: white;
+            /* 悬停时字体颜色 */
         }
     </style>
 </head>
 
 <body>
-    <h1>一个大聪明</h1>
-    <a href="htl1.html" class="button">谷子</a> <!-- 修改了 href -->
+    <div>
+        <h1>一个大聪明</h1>
+        <a href="htl1.html" class="button">谷子</a> <!-- 修改了 href -->
+    </div>
 </body>
 
 </html>
