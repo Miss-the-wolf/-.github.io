@@ -124,16 +124,18 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            padding: 30px;
+            padding: 10px;
+            /* 调整内边距 */
             background-image: url('./Images/纸嫁衣.jpg');
             background-size: cover;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 150px;
-            height: 60px;
+            width: 200px;
+            height: 100px;
             font-size: 14px;
             color: white;
             text-align: center;
+            overflow: hidden;
         }
 
         .music-controls button {
@@ -145,10 +147,53 @@
             margin: 0;
             font-size: 12px;
             cursor: pointer;
-            background: transparent;
+            background-color: rgba(0, 0, 0, 0);
+            /* 设置背景为完全透明 */
             border: none;
-            color: white;
+            /* 去掉边框 */
+            color: red;
+            /* 字体颜色为红色 */
         }
+
+
+        /* 下拉框样式 */
+        #music-select {
+            background-color: transparent;
+            /* 设置背景为透明 */
+            border: none;
+            /* 去掉边框 */
+            color: red;
+            /* 字体颜色设置为红色 */
+            outline: none;
+            /* 去掉选中后的轮廓 */
+            -webkit-appearance: none;
+            /* 去掉默认样式 */
+            -moz-appearance: none;
+            /* 去掉默认样式 */
+            appearance: none;
+            /* 去掉默认样式 */
+            font-size: 12px;
+            /* 字体大小 */
+            padding: 5px;
+            /* 内边距 */
+            position: absolute;
+            /* 修改为绝对定位 */
+            bottom: 5px;
+            /* 距离底部的距离 */
+            right: 10px;
+            /* 距离右边的距离 */
+            font-size: 12px;
+        }
+
+
+        #music3-button {
+            background-color: red;
+            /* 设置背景为红色 */
+            color: white;
+            /* 设置字体颜色为白色 */
+        }
+    </style>
+
     </style>
 </head>
 
@@ -205,68 +250,127 @@
                 <p class="story-text">受不了了，能他妈踢成这么个吊样，被戏耍，菜出天际，真是废。</p>
             </article>
 
+            <article class="story">
+                <div class="story-header">
+                    <a href="encounter.html">
+                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
+                    </a>
+                    <div class="story-info">
+                        <span>
+                            <a href="./Stories/story4.html" class="story-title">颓废的一天</a>
+                        </span>
+                        <span class="story-time">&nbsp2024年11月4日</span>
+                    </div>
+                </div>
+                <img src="./Images/颓废.jpg" alt="故事图片" class="story-image">
+                <p class="story-text">昨晚做了个奇怪的梦，突然就醒了，脑子特别清醒，睡不着就给她发了两句，哼，升完旗又回去睡了一上午，中午又睡了一下午，颓废的一天，哎。</p>
+            </article>
+
+            <!-- 你的故事内容 -->
+
             <div class="music-controls">
+                <select id="music-select" onchange="changeMusic()">
+                    <option value="./Music/shortage.mp3">荒</option>
+                    <option value="./Music/愿情.mp3">愿情</option>
+                    <option value="./Music/Dehors.mp3">Dehors</option>
+                    <option value="./Music/pretty_boy.mp3">pretty_boy</option>
+                    <option value="./Music/卜卦.mp3">卜卦</option>
+                    <option value="./Music/渡月橋_~君_想ふ~.mp3">渡月橋_~君_想ふ~</option>
+                    <option value="./Music/海阔天空.mp3">海阔天空</option>
+                    <option value="./Music/君への嘘.mp3">君への嘘</option>
+                    <option value="./Music/童年.mp3">童年</option>
+                </select>
                 <button id="music-toggle" onclick="toggleMusic()">播放</button>
-                <audio id="background-music" preload="auto" loop>
-                    <source src="./Music/shortage.mp3" type="audio/mpeg">
-                    您的浏览器不支持音频元素。
-                </audio>
             </div>
-        </div>
 
-        <button class="scroll-top" aria-label="回到顶部" onclick="scrollToTop()">回到顶部</button>
+            <script>
+                let audioContext;
+                let audioBuffer;
+                let sourceNode;
+                let isPlaying = false;
+                let currentMusic = '';
+                let currentTime = 0;
 
-        <script>
-            let isPlaying = false; // 音乐是否在播放
-
-            function toggleMusic() {
-                const audio = document.getElementById('background-music');
-                const button = document.getElementById('music-toggle');
-                if (isPlaying) {
-                    audio.pause(); // 暂停音乐
-                    button.textContent = "播放"; // 更新按钮文本
-                } else {
-                    audio.play(); // 播放音乐
-                    button.textContent = "暂停"; // 更新按钮文本
+                async function loadMusic(url) {
+                    const response = await fetch(url);
+                    const arrayBuffer = await response.arrayBuffer();
+                    audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
                 }
-                isPlaying = !isPlaying; // 切换播放状态
-            }
 
-            window.onload = function () {
-                const savedTime = localStorage.getItem('musicTime');
-                const audio = document.getElementById('background-music');
-
-                if (savedTime) {
-                    audio.currentTime = parseFloat(savedTime);
-                    audio.play().catch(error => {
-                        console.log('自动播放音乐失败:', error);
-                    });
-                    isPlaying = true;
+                function playMusic() {
+                    sourceNode = audioContext.createBufferSource();
+                    sourceNode.buffer = audioBuffer;
+                    sourceNode.loop = true; // 循环播放
+                    sourceNode.connect(audioContext.destination);
+                    sourceNode.start(0, currentTime); // 从保存的时间继续播放
+                    isPlaying = true; // 更新播放状态
                     document.getElementById('music-toggle').textContent = "暂停"; // 更新按钮文本
                 }
 
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth' // 平滑滚动
-                });
-            };
-
-            // 每500毫秒保存当前播放进度
-            setInterval(() => {
-                if (isPlaying) {
-                    const audio = document.getElementById('background-music');
-                    localStorage.setItem('musicTime', audio.currentTime);
+                function stopMusic() {
+                    if (sourceNode) {
+                        sourceNode.stop();
+                        currentTime = 0; // 停止时重置时间
+                        isPlaying = false; // 更新播放状态
+                        document.getElementById('music-toggle').textContent = "播放"; // 更新按钮文本
+                    }
                 }
-            }, 500);
 
-            function scrollToTop() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth' // 平滑滚动
-                });
-            }
-        </script>
+                function toggleMusic() {
+                    if (isPlaying) {
+                        stopMusic();
+                    } else {
+                        playMusic();
+                    }
+                    saveMusicState(); // 保存状态
+                }
 
+                async function changeMusic() {
+                    const select = document.getElementById('music-select');
+                    currentMusic = select.value; // 记录当前音乐
+                    currentTime = 0; // 切换音乐时清空进度
+                    stopMusic(); // 停止当前音乐
+                    await loadMusic(currentMusic);
+                    playMusic(); // 播放新选择的音乐
+                    saveMusicState(); // 保存状态
+                }
+
+                function saveMusicState() {
+                    localStorage.setItem('currentMusic', currentMusic);
+                    localStorage.setItem('isPlaying', isPlaying);
+                    localStorage.setItem('currentTime', currentTime);
+                }
+
+                async function restoreMusicState() {
+                    currentMusic = localStorage.getItem('currentMusic') || './Music/shortage.mp3';
+                    isPlaying = localStorage.getItem('isPlaying') === 'true';
+                    currentTime = parseFloat(localStorage.getItem('currentTime')) || 0;
+
+                    const select = document.getElementById('music-select');
+                    select.value = currentMusic; // 恢复选择的音乐
+
+                    await loadMusic(currentMusic); // 加载音乐
+                    if (isPlaying) {
+                        playMusic(); // 自动播放
+                    }
+                }
+
+                window.onload = async function () {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    await restoreMusicState(); // 恢复音乐状态
+                };
+
+                // 监控音乐播放进度
+                setInterval(() => {
+                    if (isPlaying) {
+                        currentTime += 1; // 假设每次间隔 1 秒
+                        saveMusicState(); // 每隔一段时间保存当前时间
+                    }
+                }, 1000);
+            </script>
+        </div>
+
+    </div>
 </body>
 
 </html>
