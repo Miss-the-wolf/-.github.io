@@ -5,372 +5,571 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="tb.ico" type="image/x-icon">
-    <title>故事分享</title>
+    <title>无敌小帅哥的博客</title>
+
     <style>
+        h1 {
+            font-family: 'KaiTi', serif;
+            /* 使用楷体 */
+            color: #c19e5d;
+            /* 设置标题颜色 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            /* 添加阴影效果 */
+            font-size: 55px;
+        }
+
+        p {
+            font-family: 'Arial', sans-serif;
+            /* 使用 Arial 字体 */
+            color: #b25563;
+            /* 设置段落颜色 */
+            line-height: 1.6;
+            /* 增加行间距 */
+            font-size: 24px;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            /* 允许换行 */
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0);
+            padding: 5px 0;
+            /* 缩小内边距 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: auto;
+            /* 将宽度设为自动 */
+            max-width: 1000px;
+            /* 设置最大宽度 */
+            top: 0;
+            left: 50%;
+            /* 将左边距设为50% */
+            transform: translateX(-50%);
+            /* 使其向左移动自身宽度的一半，实现居中 */
+            z-index: 1000;
+        }
+
+        .navbar button {
+            margin: 0 5px;
+            /* 按钮间距 */
+            padding: 5px 10px;
+            /* 按钮内边距 */
+            font-size: 14px;
+            /* 字体大小 */
+            background-color: rgba(52, 152, 219, 0.3);
+            /* 调整为更透明的背景颜色 */
+            color: white;
+            /* 字体颜色 */
+            border: none;
+            /* 无边框 */
+            border-radius: 5px;
+            /* 圆角 */
+            cursor: pointer;
+            /* 鼠标悬停效果 */
+            transition: background-color 0.3s;
+            /* 背景颜色变化 */
+        }
+
+        .navbar button:hover {
+            background-color: rgba(41, 128, 185, 0.5);
+            /* 悬停时的背景颜色透明度保持一致 */
+        }
+
+        /* 搜索栏 */
+
+        button {
+            padding: 7px 10px;
+            /* 按钮内边距 */
+            background-color: #b75e6b;
+            /* 按钮背景颜色 */
+            color: white;
+            /* 按钮字体颜色 */
+            border: none;
+            /* 去掉按钮边框 */
+            border-radius: 5px;
+            /* 圆角 */
+            cursor: pointer;
+            /* 鼠标悬停时变为手型 */
+            font-size: 10px;
+            /* 字体大小 */
+            margin-left: 8px;
+            /* 按钮与输入框之间的间距 */
+            transition: background-color 0.3s;
+            /* 背景颜色变化过渡 */
+        }
+
+        button:hover {
+            background-color: #c19e5d;
+            /* 悬停时的按钮背景颜色 */
+        }
+
+
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-image: url('./Images/龙图.png');
+            position: relative;
+            height: 100vh;
+            background-image: url('./Images/龙猫.png');
             background-size: cover;
             background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
         }
 
-        h1 {
+
+        /* 针对小屏幕的样式 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+                /* 减小标题字体大小 */
+            }
+
+            .navbar {
+                flex-direction: column;
+                /* 垂直排列导航栏按钮 */
+            }
+
+            .navbar button {
+                width: 100%;
+                /* 按钮宽度设为 100% */
+                margin: 5px 0;
+                /* 按钮间距 */
+            }
+
+            .story-image {
+                width: 100%;
+                /* 让故事图片宽度自适应 */
+                height: auto;
+                /* 保持纵横比 */
+            }
+
+            #clock {
+                font-size: 20px;
+                /* 减小时钟字体大小 */
+            }
+
+            #date {
+                font-size: 14px;
+                /* 减小日期字体大小 */
+            }
+        }
+
+        #clock {
+            position: absolute;
+            bottom: 35px;
+            right: 10px;
+            background: #fff;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #date {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            padding: 8px;
+            font-size: 16px;
+            color: #241c1c;
+        }
+
+        header {
             text-align: center;
-            color: rgb(95, 135, 65);
-            font-family: "楷体";
-            text-shadow: 2px 2px 5px rgba(33, 31, 31, 0.3);
-            background: linear-gradient(90deg, #ff5733, #33c4ff);
-            -webkit-background-clip: text;
-            background-clip: text;
+            margin-top: 1%;
         }
 
-        .story-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 40px;
-            background-color: transparent;
+        main {
+            text-align: center;
+            margin-top: 20px;
         }
 
-        .story {
-            margin-bottom: 20px;
-            background-color: rgba(224, 216, 216, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(87, 73, 73, 0.1);
-            display: flex;
-            align-items: center;
-            flex-direction: column;
+        button {
+            margin: 5px;
+        }
+    </style>
+
+    <style>
+        /* 设置页面基本样式 */
+        body {
+            position: relative;
+            height: 100vh;
+            background-image: url('./Images/龙猫.png');
+            /* 替换为你的自定义图片路径 */
+            background-size: cover;
+            /* 背景图覆盖整个页面 */
+            background-position: center;
+            /* 背景图居中 */
+            font-family: Arial, sans-serif;
+            margin: 0;
         }
 
-        .story-header {
-            display: flex;
-            align-items: center;
-            width: 100%;
-        }
 
-        .story-info {
-            display: flex;
-            flex-direction: column;
-            margin-left: 10px;
-        }
-
-        .story-title {
-            color: rgba(147, 139, 41, 0.9);
-            font-family: "楷体", "serif";
-            font-size: 20px;
-            text-decoration: none;
-        }
-
-        .story-time {
-            font-size: 0.9em;
-            color: #888;
-        }
-
-        .avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .story-image {
+        /* 钟表容器样式 */
+        .clock {
+            position: absolute;
+            /* 使用绝对定位 */
+            top: 5px;
+            /* 距离页面顶部5像素 */
+            right: 5px;
+            /* 距离页面右侧5像素 */
             width: 150px;
-            height: auto;
-            margin-top: 10px;
-            opacity: 0.5;
-            transition: opacity 0.3s;
+            /* 钟表的宽度 */
+            height: 150px;
+            /* 钟表的高度 */
+            background-color: #1d2129;
+            /* 设置钟表的背景颜色 */
+            /* border: 10px solid white; */
+            /* 去掉白色边框 */
+            border-radius: 50%;
+            /* 使边框圆形 */
         }
 
-        .story-image:hover {
-            opacity: 0.7;
+
+        /* 数字的样式 */
+        .numbers {
+            position: absolute;
+            /* 绝对定位 */
+            width: 100%;
+            /* 占满整个钟表 */
+            height: 100%;
+            /* 占满整个钟表 */
+            display: flex;
+            /* 使用 Flexbox 布局 */
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+            /* 垂直居中 */
+            pointer-events: none;
+            /* 使数字不干扰时钟的交互 */
         }
 
-        a {
-            text-decoration: none;
+        /* 每个数字的样式 */
+        .number {
+            position: absolute;
+            /* 绝对定位 */
+            width: 25%;
+            /* 宽度为容器的25% */
+            text-align: center;
+            /* 文字居中对齐 */
+            font-size: 16px;
+            /* 字体大小 */
+            color: white;
+            /* 字体颜色 */
         }
 
-        .scroll-top {
+        /* 设置每个数字在钟表上的位置 */
+        .number:nth-child(12) {
+            transform: translate(0, -60px);
+        }
+
+        .number:nth-child(1) {
+            transform: rotate(30deg) translate(0, -60px);
+        }
+
+        .number:nth-child(2) {
+            transform: rotate(60deg) translate(0, -60px);
+        }
+
+        .number:nth-child(3) {
+            transform: rotate(90deg) translate(0, -60px);
+        }
+
+        .number:nth-child(4) {
+            transform: rotate(120deg) translate(0, -60px);
+        }
+
+        .number:nth-child(5) {
+            transform: rotate(150deg) translate(0, -60px);
+        }
+
+        .number:nth-child(6) {
+            transform: rotate(180deg) translate(0, -60px);
+        }
+
+        .number:nth-child(7) {
+            transform: rotate(210deg) translate(0, -60px);
+        }
+
+        .number:nth-child(8) {
+            transform: rotate(240deg) translate(0, -60px);
+        }
+
+        .number:nth-child(9) {
+            transform: rotate(270deg) translate(0, -60px);
+        }
+
+        .number:nth-child(10) {
+            transform: rotate(300deg) translate(0, -60px);
+        }
+
+        .number:nth-child(11) {
+            transform: rotate(330deg) translate(0, -60px);
+        }
+
+        /* 时针、分针、秒针的样式 */
+        .hour,
+        .minute,
+        .second {
+            position: absolute;
+            /* 绝对定位 */
+            bottom: 50%;
+            /* 底部距离为50% */
+            left: 50%;
+            /* 左侧距离为50% */
+            background-color: white;
+            /* 背景颜色为白色 */
+            border-radius: 5px;
+            /* 边角圆润 */
+            transform-origin: bottom;
+            /* 旋转的原点在底部 */
+        }
+
+        .hour {
+            width: 4px;
+            /* 时针宽度 */
+            height: 25px;
+            /* 时针高度 */
+            background-color: rgb(176, 63, 63);
+        }
+
+        .minute {
+            width: 3px;
+            /* 分针宽度 */
+            height: 35px;
+            /* 分针高度 */
+            background-color: rgb(72, 72, 38);
+        }
+
+        .second {
+            width: 2px;
+            /* 秒针宽度 */
+            height: 45px;
+            /* 秒针高度 */
+            background-color: rgb(220, 213, 213);
+            /* 秒针样式 */
+        }
+
+        #toggleMusic {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            background-color: #007bff;
+            left: 20px;
+            background-color: rgba(52, 152, 219, 0.7);
             color: white;
             border: none;
-            padding: 10px 15px;
             border-radius: 5px;
+            padding: 10px 15px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
-        .scroll-top:hover {
-            background-color: #0056b3;
+        #toggleMusic:hover {
+            background-color: rgba(41, 128, 185, 0.9);
         }
-
-        p {
-            color: #333;
-        }
-
-        .story-text {
-            color: #4e4c33;
-            margin: 10px 0;
-            padding: 10px;
-            background-color: rgba(212, 191, 191, 0.8);
-            border-radius: 5px;
-        }
-
-        .music-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px;
-            /* 调整内边距 */
-            background-image: url('./Images/纸嫁衣.jpg');
-            background-size: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            height: 100px;
-            font-size: 14px;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .music-controls button {
-            position: absolute;
-            bottom: 5px;
-            left: 5px;
-            width: 40px;
-            height: 30px;
-            margin: 0;
-            font-size: 12px;
-            cursor: pointer;
-            background-color: rgba(0, 0, 0, 0);
-            /* 设置背景为完全透明 */
-            border: none;
-            /* 去掉边框 */
-            color: red;
-            /* 字体颜色为红色 */
-        }
-
-
-        /* 下拉框样式 */
-        #music-select {
-            background-color: transparent;
-            /* 设置背景为透明 */
-            border: none;
-            /* 去掉边框 */
-            color: red;
-            /* 字体颜色设置为红色 */
-            outline: none;
-            /* 去掉选中后的轮廓 */
-            -webkit-appearance: none;
-            /* 去掉默认样式 */
-            -moz-appearance: none;
-            /* 去掉默认样式 */
-            appearance: none;
-            /* 去掉默认样式 */
-            font-size: 12px;
-            /* 字体大小 */
-            padding: 5px;
-            /* 内边距 */
-            position: absolute;
-            /* 修改为绝对定位 */
-            bottom: 5px;
-            /* 距离底部的距离 */
-            right: 10px;
-            /* 距离右边的距离 */
-            font-size: 12px;
-        }
-
-
-        #music3-button {
-            background-color: red;
-            /* 设置背景为红色 */
-            color: white;
-            /* 设置字体颜色为白色 */
-        }
-    </style>
-
     </style>
 </head>
 
 <body>
 
-    <h1>故事分享</h1>
+    <audio id="backgroundMusic" loop>
+        <source src="./Music/白鸽乌鸦相爱的戏码.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
 
-    <div style="display: flex;">
-        <div class="story-container">
-            <article class="story">
-                <div class="story-header">
-                    <a href="encounter.html">
-                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
-                    </a>
-                    <div class="story-info">
-                        <span>
-                            <a href="./Stories/story1.html" class="story-title">梦开始的地方</a>
-                        </span>
-                        <span class="story-time">&nbsp2024年11月1日</span>
-                    </div>
-                </div>
-                <img src="./Images/怪兽.jpg" alt="故事图片" class="story-image">
-            </article>
+    <button id="toggleMusic">音乐</button>
 
-            <article class="story">
-                <div class="story-header">
-                    <a href="encounter.html">
-                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
-                    </a>
-                    <div class="story-info">
-                        <span>
-                            <a href="./Stories/story2.html" class="story-title">无聊的一天</a>
-                        </span>
-                        <span class="story-time">&nbsp2024年11月2日</span>
-                    </div>
-                </div>
-                <img src="./Images/奥特曼.jpg" alt="故事图片" class="story-image">
-                <p class="story-text">睡了一上午，十点半才起，踢球到3点，颇有长进吧，还是挺菜，又瞎搞了一下午，时间过得真快，干饭去。</p>
-            </article>
+    <form action="https://www.baidu.com/s" target="target">
+        <input type="text" name="wd" placeholder="请输入搜索内容">
+        <button>百度搜索</button>
+    </form>
 
-            <article class="story">
-                <div class="story-header">
-                    <a href="encounter.html">
-                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
-                    </a>
-                    <div class="story-info">
-                        <span>
-                            <a href="./Stories/story3.html" class="story-title">小丑的一天</a>
-                        </span>
-                        <span class="story-time">&nbsp2024年11月3日</span>
-                    </div>
-                </div>
-                <img src="./Images/崩溃.png" alt="故事图片" class="story-image">
-                <p class="story-text">受不了了，能他妈踢成这么个吊样，被戏耍，菜出天际，真是废。</p>
-            </article>
+    <form action="https://www.google.com/search" target="_blank">
+        <input type="text" name="q" placeholder="请输入搜索内容">
+        <button type="submit">谷歌搜索</button>
+    </form>
 
-            <article class="story">
-                <div class="story-header">
-                    <a href="encounter.html">
-                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
-                    </a>
-                    <div class="story-info">
-                        <span>
-                            <a href="./Stories/story4.html" class="story-title">颓废的一天</a>
-                        </span>
-                        <span class="story-time">&nbsp2024年11月4日</span>
-                    </div>
-                </div>
-                <img src="./Images/颓废.jpg" alt="故事图片" class="story-image">
-                <p class="story-text">昨晚做了个奇怪的梦，突然就醒了，脑子特别清醒，睡不着就给她发了两句，哼，升完旗又回去睡了一上午，中午又睡了一下午，颓废的一天，哎。</p>
-            </article>
+    <form id="translateForm" target="_blank" onsubmit="return submitForm()">
+        <input type="text" id="word" placeholder="请输入要翻译的内容">
+        <button type="submit">翻译</button>
+    </form>
 
-            <!-- 你的故事内容 -->
+    <script>
+        function submitForm() {
+            const word = document.getElementById('word').value;
+            const translateURL = `https://translate.google.com/?sl=auto&tl=zh-CN&text=${encodeURIComponent(word)}&op=translate`;
+            window.open(translateURL, '_blank');
+            return false; // 防止表单的默认提交行为
+        }
+    </script>
 
-            <div class="music-controls">
-                <select id="music-select" onchange="changeMusic()">
-                    <option value="./Music/shortage.mp3">荒</option>
-                    <option value="./Music/愿情.mp3">愿情</option>
-                    <option value="./Music/Dehors.mp3">Dehors</option>
-                    <option value="./Music/pretty_boy.mp3">pretty_boy</option>
-                    <option value="./Music/卜卦.mp3">卜卦</option>
-                    <option value="./Music/渡月橋_~君_想ふ~.mp3">渡月橋_~君_想ふ~</option>
-                    <option value="./Music/海阔天空.mp3">海阔天空</option>
-                    <option value="./Music/君への嘘.mp3">君への嘘</option>
-                    <option value="./Music/童年.mp3">童年</option>
-                </select>
-                <button id="music-toggle" onclick="toggleMusic()">播放</button>
-            </div>
+    <div id="clock"></div>
+    <div id="date"></div>
 
-            <script>
-                let audioContext;
-                let audioBuffer;
-                let sourceNode;
-                let isPlaying = false;
-                let currentMusic = '';
-                let currentTime = 0;
+    <script>
+        function updateClock() {
+            const now = new Date();
 
-                async function loadMusic(url) {
-                    const response = await fetch(url);
-                    const arrayBuffer = await response.arrayBuffer();
-                    audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-                }
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
 
-                function playMusic() {
-                    sourceNode = audioContext.createBufferSource();
-                    sourceNode.buffer = audioBuffer;
-                    sourceNode.loop = true; // 循环播放
-                    sourceNode.connect(audioContext.destination);
-                    sourceNode.start(0, currentTime); // 从保存的时间继续播放
-                    isPlaying = true; // 更新播放状态
-                    document.getElementById('music-toggle').textContent = "暂停"; // 更新按钮文本
-                }
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
 
-                function stopMusic() {
-                    if (sourceNode) {
-                        sourceNode.stop();
-                        currentTime = 0; // 停止时重置时间
-                        isPlaying = false; // 更新播放状态
-                        document.getElementById('music-toggle').textContent = "播放"; // 更新按钮文本
-                    }
-                }
+            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const weekday = weekdays[now.getDay()];
 
-                function toggleMusic() {
-                    if (isPlaying) {
-                        stopMusic();
-                    } else {
-                        playMusic();
-                    }
-                    saveMusicState(); // 保存状态
-                }
+            document.getElementById('date').textContent = `${year}-${month}-${day} ${weekday}`;
+        }
 
-                async function changeMusic() {
-                    const select = document.getElementById('music-select');
-                    currentMusic = select.value; // 记录当前音乐
-                    currentTime = 0; // 切换音乐时清空进度
-                    stopMusic(); // 停止当前音乐
-                    await loadMusic(currentMusic);
-                    playMusic(); // 播放新选择的音乐
-                    saveMusicState(); // 保存状态
-                }
+        setInterval(updateClock, 1000);
+        updateClock(); // 初始化显示
+    </script>
 
-                function saveMusicState() {
-                    localStorage.setItem('currentMusic', currentMusic);
-                    localStorage.setItem('isPlaying', isPlaying);
-                    localStorage.setItem('currentTime', currentTime);
-                }
 
-                async function restoreMusicState() {
-                    currentMusic = localStorage.getItem('currentMusic') || './Music/shortage.mp3';
-                    isPlaying = localStorage.getItem('isPlaying') === 'true';
-                    currentTime = parseFloat(localStorage.getItem('currentTime')) || 0;
-
-                    const select = document.getElementById('music-select');
-                    select.value = currentMusic; // 恢复选择的音乐
-
-                    await loadMusic(currentMusic); // 加载音乐
-                    if (isPlaying) {
-                        playMusic(); // 自动播放
-                    }
-                }
-
-                window.onload = async function () {
-                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    await restoreMusicState(); // 恢复音乐状态
-                };
-
-                // 监控音乐播放进度
-                setInterval(() => {
-                    if (isPlaying) {
-                        currentTime += 1; // 假设每次间隔 1 秒
-                        saveMusicState(); // 每隔一段时间保存当前时间
-                    }
-                }, 1000);
-            </script>
+    <div class="clock">
+        <div class="hour" id="hour"></div> <!-- 时针 -->
+        <div class="minute" id="minute"></div> <!-- 分针 -->
+        <div class="second" id="second"></div> <!-- 秒针 -->
+        <div class="numbers">
+            <!-- 时钟数字 -->
+            <div class="number">I</div>
+            <div class="number">II</div>
+            <div class="number">III</div>
+            <div class="number">IV</div>
+            <div class="number">V</div>
+            <div class="number">VI</div>
+            <div class="number">VII</div>
+            <div class="number">VIII</div>
+            <div class="number">IX</div>
+            <div class="number">X</div>
+            <div class="number">XI</div>
+            <div class="number">XII</div>
         </div>
-
     </div>
+    <script>
+        // 更新时钟的函数
+        function updateClock() {
+            const now = new Date(); // 获取当前时间
+            const hours = now.getHours() % 12; // 获取小时，并转换为12小时制
+            const minutes = now.getMinutes(); // 获取分钟
+            const seconds = now.getSeconds(); // 获取秒
+
+            // 计算每根指针的旋转角度
+            const hourDeg = (hours + minutes / 60) * 30; // 时针角度
+            const minuteDeg = (minutes + seconds / 60) * 6; // 分针角度
+            const secondDeg = seconds * 6; // 秒针角度
+
+            // 设置每根指针的旋转
+            document.getElementById('hour').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('minute').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('second').style.transform = `rotate(${secondDeg}deg)`;
+
+            // 请求下一帧更新时钟
+            requestAnimationFrame(updateClock);
+        }
+
+        // 启动时钟更新
+        requestAnimationFrame(updateClock);
+    </script>
+
+    <header>
+        <br>
+        <br>
+        <br>
+        <h1>无敌小帅哥的博客</h1>
+    </header>
+    <main>
+        <p>欢迎来到我的博客！我是 <strong>懒洋洋</strong>，一个热爱编程和分享的人。</p>
+    </main>
+
+    <div class="navbar">
+        <button id="button1">小帅哥的主页</button>
+        <button id="button2">懒洋洋</button>
+        <button id="button3">灰太狼</button>
+        <button id="button4">找到我</button>
+        <button id="button5">测试内容</button>
+        <button id="button6">日记</button>
+        <button id="button7">故事</button>
+    </div>
+
+    <script>
+        document.getElementById("button1").onclick = function () {
+            window.location.href = "小帅哥的主页.html";
+        };
+
+        document.getElementById("button2").onclick = function () {
+            window.location.href = "lyy.html";
+        };
+
+        document.getElementById("button3").onclick = function () {
+            window.location.href = "htl.html";
+        };
+
+        document.getElementById("button4").onclick = function () {
+            window.location.href = "encounter.html";
+        };
+
+        document.getElementById("button5").onclick = function () {
+            window.location.href = "测试.html";
+        };
+
+        document.getElementById("button6").onclick = function () {
+            window.location.href = "日记.html";
+        };
+        document.getElementById("button7").onclick = function () {
+            window.location.href = "Story Sharing.html";
+        };
+
+
+    </script>
+
+    <script>
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const toggleMusicButton = document.getElementById('toggleMusic');
+
+        // 当页面加载时恢复音乐进度并自动播放
+        window.onload = function () {
+            const savedTime = localStorage.getItem('musicTime');
+            if (savedTime) {
+                backgroundMusic.currentTime = parseFloat(savedTime);
+            }
+
+            // 尝试自动播放音乐
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().catch(error => {
+                    console.log('自动播放音乐失败:', error);
+                });
+            }
+        };
+
+        // 切换播放状态
+        toggleMusicButton.onclick = function () {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                toggleMusicButton.textContent = '暂停音乐'; // 更新按钮文本
+            } else {
+                backgroundMusic.pause();
+                toggleMusicButton.textContent = '播放音乐'; // 更新按钮文本
+            }
+        };
+
+        // 每秒保存当前播放进度
+        setInterval(() => {
+            if (!backgroundMusic.paused) {
+                localStorage.setItem('musicTime', backgroundMusic.currentTime);
+            }
+        }, 1000);
+    </script>
+
+
+
+
 </body>
 
 </html>
