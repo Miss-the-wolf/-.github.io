@@ -271,14 +271,14 @@
             <div class="music-controls">
                 <select id="music-select" onchange="changeMusic()">
                     <option value="./Music/shortage.mp3">荒</option>
-                    <option value="./Music/愿情.mp3">愿情</option>
+                    <option value="./Music/愿情.ogg">愿情</option>
                     <option value="./Music/Dehors.mp3">Dehors</option>
-                    <option value="./Music/pretty_boy.mp3">pretty_boy</option>
-                    <option value="./Music/卜卦.mp3">卜卦</option>
-                    <option value="./Music/渡月橋_~君_想ふ~.mp3">渡月橋_~君_想ふ~</option>
-                    <option value="./Music/海阔天空.mp3">海阔天空</option>
-                    <option value="./Music/君への嘘.mp3">君への嘘</option>
-                    <option value="./Music/童年.mp3">童年</option>
+                    <option value="./Music/Pretty_Boy.ogg">pretty_boy</option>
+                    <option value="./Music/卜卦.ogg">卜卦</option>
+                    <option value="./Music/渡月橋_～君_想ふ～.ogg">渡月橋_~君_想ふ~</option>
+                    <option value="./Music/海阔天空.ogg">海阔天空</option>
+                    <option value="./Music/君への嘘.ogg">君への嘘</option>
+                    <option value="./Music/童年.ogg">童年</option>
                 </select>
                 <button id="music-toggle" onclick="toggleMusic()">播放</button>
             </div>
@@ -298,6 +298,9 @@
                 }
 
                 function playMusic() {
+                    if (sourceNode) {
+                        stopMusic(); // 停止当前播放的音乐
+                    }
                     sourceNode = audioContext.createBufferSource();
                     sourceNode.buffer = audioBuffer;
                     sourceNode.loop = true; // 循环播放
@@ -313,6 +316,7 @@
                         currentTime = 0; // 停止时重置时间
                         isPlaying = false; // 更新播放状态
                         document.getElementById('music-toggle').textContent = "播放"; // 更新按钮文本
+                        sourceNode = null; // 清空 sourceNode
                     }
                 }
 
