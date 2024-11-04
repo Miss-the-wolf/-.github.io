@@ -29,26 +29,22 @@
         }
 
         /* 导航栏样式 */
-        .navbar {
+                .navbar {
             display: flex;
             flex-wrap: wrap;
             /* 允许换行 */
             justify-content: center;
+            /* 水平居中 */
             background-color: rgba(255, 255, 255, 0);
             padding: 5px 0;
             /* 缩小内边距 */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: auto;
-            /* 将宽度设为自动 */
+            position: relative;
+            /* 改为相对定位 */
             max-width: 1000px;
             /* 设置最大宽度 */
-            top: 0;
-            left: 50%;
-            /* 将左边距设为50% */
-            transform: translateX(-50%);
-            /* 使其向左移动自身宽度的一半，实现居中 */
-            z-index: 1000;
+            margin: 20px auto;
+            /* 上下留出间距，左右居中 */
         }
 
         .navbar button {
