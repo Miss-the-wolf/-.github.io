@@ -10,7 +10,7 @@
     <style>
         h1 {
             font-family: 'KaiTi', serif;
-            color: #a88646;
+            color: #9a7b41;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             font-size: 4vw;
             /* 根据视口宽度动态调整字体大小 */
@@ -126,36 +126,44 @@
         @media (max-width: 600px) {
             h1 {
                 font-size: 24px;
-                /* 减小标题字体大小 */
             }
 
-            .navbar {
-                flex-direction: column;
-                /* 垂直排列导航栏按钮 */
+            p {
+                font-size: 16px;
             }
 
-            .navbar button {
-                width: 100%;
-                /* 按钮宽度设为 100% */
-                margin: 5px 0;
-                /* 按钮间距 */
+            button {
+                font-size: 12px;
+            }
+        }
+
+        /* 针对中等屏幕（例如平板） */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            h1 {
+                font-size: 40px;
             }
 
-            .story-image {
-                width: 100%;
-                /* 让故事图片宽度自适应 */
-                height: auto;
-                /* 保持纵横比 */
-            }
-
-            #clock {
+            p {
                 font-size: 20px;
-                /* 减小时钟字体大小 */
             }
 
-            #date {
-                font-size: 14px;
-                /* 减小日期字体大小 */
+            button {
+                font-size: 16px;
+            }
+        }
+
+        /* 针对较大屏幕（例如桌面显示器） */
+        @media (min-width: 1024px) {
+            h1 {
+                font-size: 55px;
+            }
+
+            p {
+                font-size: 24px;
+            }
+
+            button {
+                font-size: 18px;
             }
         }
 
