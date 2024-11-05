@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="tb.ico" type="image/x-icon">
+    <title>故事分享</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ebe5ea;
+            /* 设置背景颜色 */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .story-container {
+            max-width: 800px;
+            /* 增加最大宽度 */
+            margin: auto;
+            padding: 40px;
+            /* 增加内边距 */
+        }
+
+        .story {
+            margin-bottom: 20px;
+            background-color: white;
+            /* 设置故事背景为白色 */
+            padding: 20px;
+            /* 添加内边距 */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            /* 使用 Flexbox 布局 */
+            align-items: center;
+            /* 垂直居中对齐 */
+            flex-direction: column;
+            /* 纵向排列 */
+        }
+
+        .story-header {
+            display: flex;
+            /* 使用 Flexbox 布局 */
+            align-items: center;
+            /* 垂直居中对齐 */
+            width: 100%;
+            /* 使标题和时间占满宽度 */
+        }
+
+        .story-info {
+            display: flex;
+            /* 使用 Flexbox 布局 */
+            flex-direction: column;
+            /* 纵向排列 */
+            margin-left: 10px;
+            /* 给头像和信息之间添加左边距 */
+        }
+
+        .story-title {
+            color: rgba(205, 191, 31, 0.9);
+            font-family: "楷体", "serif";
+            font-size: 20px;
+            text-decoration: none;
+            /* 去掉下划线 */
+        }
+
+        .story-time {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .avatar {
+            width: 50px;
+            /* 设置头像宽度 */
+            height: 50px;
+            /* 设置头像高度 */
+            border-radius: 50%;
+            /* 使头像为圆形 */
+            cursor: pointer;
+            /* 鼠标悬停时变成手型 */
+        }
+
+        img.story-image {
+            max-width: 100%;
+            /* 图片自适应宽度 */
+            height: auto;
+            /* 保持纵横比 */
+            margin-top: 10px;
+            /* 图片上边距 */
+        }
+
+        a {
+            text-decoration: none;
+            /* 去掉所有链接的下划线 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>故事分享</h1>
+
+    <div class="story-container">
+
+        <div class="story">
+            <div class="story-header">
+                <a href="../encounter.html">
+                    <img src="../Images/怪兽.jpg" alt="头像" class="avatar">
+                </a>
+
+                <div class="story-info">
+                    <span>
+                        <a href="javascript:location.reload();" class="story-title">烦的一天</a>
+                    </span>
+                    <span class="story-time">&nbsp2024年11月5日</span>
+                </div>
+            </div>
+            <p>烦的一天</p>
+        </div>
+
+    </div>
+
+    <script>
+        window.onload = function () {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth' // 平滑滚动
+            });
+        };
+    </script>
+
+</body>
+
+</html>
