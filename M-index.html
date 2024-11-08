@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music-Time</title>
+    <link rel="icon" href="tb.ico" type="image/x-icon">
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px 20px;
+            color: #fff;
+        }
+
+        /* 图标样式 */
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 100px;
+            margin-right: 10px;
+            border-radius: 10%;
+        }
+
+        .navbar .logo span {
+            font-size: 44px;
+            font-weight: bold;
+        }
+
+        /* 分离搜索框与导航链接 */
+        .navbar .nav-links-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* 搜索框居中样式 */
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            margin-left: auto;
+            /* 将搜索框推到右侧 */
+            margin-right: auto;
+            width: 50%;
+        }
+
+        /* 搜索框的输入框样式 */
+        .search-box input[type="text"] {
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 34px;
+            width: 100%;
+        }
+
+        /* 搜索图标样式 */
+        .search-icon {
+            color: #333;
+            margin-left: 5px;
+            cursor: pointer;
+            font-size: 30px;
+        }
+
+        /* 导航链接样式 */
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 36px;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ddd;
+        }
+
+        /* 风格选择图片 */
+        .style-selector img {
+            cursor: pointer;
+            height: 120px;
+            width: 120px;
+            transition: transform 0.3s;
+            border-radius: 50%;
+        }
+
+        /* 图片悬停时放大效果 */
+        .style-selector img:hover {
+            transform: scale(1.1);
+        }
+
+        /* 音乐类型按钮样式 */
+        .music-type-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .type-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .type-button:hover {
+            background-color: #555;
+        }
+
+        /* 音乐列表的类型过滤 */
+        .music-item {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        /* 为每种音乐类型添加类 */
+        .music-item.classical {
+            background-color: #f1f8ff;
+        }
+
+        .music-item.pop {
+            background-color: #fff0f0;
+        }
+
+        .music-item.rock {
+            background-color: #f0f0f0;
+        }
+
+        .music-item.jazz {
+            background-color: #f8f1f1;
+        }
+
+        .music-item.electronic {
+            background-color: #f1f1f8;
+        }
+
+        /* Hover效果 */
+        .music-item:hover {
+            background-color: #ddd;
+        }
+
+        /* 默认样式 */
+        body.light-style {
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        body.light-style .navbar {
+            background-color: #333;
+        }
+
+        body.dark-style {
+            background-color: #333;
+            color: #fff;
+        }
+
+        body.dark-style .navbar {
+            background-color: #222;
+        }
+
+        /* 主内容区域 */
+        .main-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 0 15%;
+            /* 左右留白 */
+        }
+
+        /* 视频容器 */
+        .video-container {
+            width: 45%;
+            padding: 10px;
+            background-color: transparent;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 视频样式 */
+        video {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* 视频说明文字 */
+        .video-description {
+            font-size: 16px;
+            color: #4f3d3d;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* 音乐列表样式 */
+        .music-list {
+            width: 45%;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-item {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        .music-item:hover {
+            background-color: #ddd;
+        }
+
+        /* 歌名样式 */
+        .music-name {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* 作者样式 */
+        .music-author {
+            font-size: 16px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .navbar .nav-links-container {
+                flex-direction: column;
+            }
+
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .video-container,
+            .music-list {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <!-- 图标和标题 -->
+        <div class="logo">
+            <img src="./Images/黑天鹅.jpg" alt="Logo">
+            <span>Music-Time</span>
+        </div>
+
+        <!-- 导航链接和风格切换容器 -->
+        <div class="nav-links-container">
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索音乐..." oninput="filterMusic()">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <!-- 导航链接 -->
+            <div class="nav-links">
+                <a href="M-index.html">主页</a>
+                <a href="M-about.html">关于</a>
+                <a href="M-content.html">联系</a>
+            </div>
+
+            <!-- 风格切换图片 -->
+            <div class="style-selector">
+                <img src="./Images/白天鹅.jpg
+                " alt="切换风格" onclick="toggleStyle()">
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <div class="main-container">
+        <!-- 视频容器 -->
+        <div class="video-container">
+            <video controls>
+                <source src="./Video/04.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+            <div class="video-description">
+                这是一个精彩的视频示例，播放一些经典的音乐片段。
+            </div>
+        </div>
+
+        <!-- 音乐类型按钮 -->
+        <div class="music-type-buttons">
+            <button class="type-button" onclick="filterMusicByType('classical')">古典</button>
+            <button class="type-button" onclick="filterMusicByType('pop')">流行</button>
+            <button class="type-button" onclick="filterMusicByType('rock')">摇滚</button>
+            <button class="type-button" onclick="filterMusicByType('jazz')">爵士</button>
+            <button class="type-button" onclick="filterMusicByType('electronic')">电子</button>
+        </div>
+
+        <!-- 音乐列表 -->
+        <div class="music-list" id="musicList">
+            <div class="music-item" onclick="playMusic('Music/白鸽乌鸦相爱的戏码.ogg')">
+                <div class="music-name">黑天鹅</div>
+                <div class="music-author">作者：Tchaikovsky</div>
+            </div>
+            <div class="music-item" onclick="playMusic('Music/moonlight_sonata.mp3')">
+                <div class="music-name">月光奏鸣曲</div>
+                <div class="music-author">作者：Beethoven</div>
+            </div>
+            <div class="music-item" onclick="playMusic('Music/four_seasons.mp3')">
+                <div class="music-name">四季</div>
+                <div class="music-author">作者：Vivaldi</div>
+            </div>
+            <div class="music-item" onclick="playMusic('Music/fur_elise.mp3')">
+                <div class="music-name">致爱丽丝</div>
+                <div class="music-author">作者：Beethoven</div>
+            </div>
+            <div class="music-item" onclick="playMusic('Music/sky_city.mp3')">
+                <div class="music-name">天空之城</div>
+                <div class="music-author">作者：久石让</div>
+            </div>
+            <div class="music-item" onclick="playMusic('Music/canon.mp3')">
+                <div class="music-name">卡农</div>
+                <div class="music-author">作者：Pachelbel</div>
+            </div>
+        </div>
+
+        <!-- 音频播放器 -->
+        <audio id="audioPlayer" controls>
+            您的浏览器不支持音频播放。
+        </audio>
+    </div>
+
+    <script>
+        // 过滤音乐列表的函数
+        function filterMusic() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const musicList = document.getElementById('musicList');
+            const musicItems = musicList.getElementsByClassName('music-item');
+
+            Array.from(musicItems).forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+
+        // 播放音乐的函数
+        function playMusic(audioFile) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = audioFile; // 设置音频源
+            audioPlayer.play(); // 播放音频
+        }
+
+        // 切换风格的函数
+        let isDarkStyle = false;
+
+        function toggleStyle() {
+            if (isDarkStyle) {
+                document.body.classList.remove('dark-style');
+                document.body.classList.add('light-style');
+            } else {
+                document.body.classList.remove('light-style');
+                document.body.classList.add('dark-style');
+            }
+            isDarkStyle = !isDarkStyle;
+        }
+
+        // 播放音乐并保存进度
+        function playMusic(audioFile) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = audioFile;
+
+            // 检查是否有存储的播放进度
+            const savedTime = localStorage.getItem(audioFile);
+            if (savedTime) {
+                audioPlayer.currentTime = savedTime;
+            }
+
+            audioPlayer.play();
+
+            // 保存播放进度
+            audioPlayer.ontimeupdate = () => {
+                localStorage.setItem(audioFile, audioPlayer.currentTime);
+            };
+        }
+
+        // 过滤音乐类型的函数
+        function filterMusicByType(type) {
+            const musicItems = document.querySelectorAll('.music-item');
+            musicItems.forEach(item => {
+                if (item.classList.contains(type) || type === 'all') {
+                    item.style.display = ''; // 显示
+                } else {
+                    item.style.display = 'none'; // 隐藏
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
