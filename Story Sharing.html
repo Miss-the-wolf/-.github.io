@@ -24,17 +24,18 @@
             background: linear-gradient(90deg, #ff5733, #33c4ff);
             -webkit-background-clip: text;
             background-clip: text;
+            font-size: 56px;
         }
 
         .story-container {
-            max-width: 600px;
+            max-width: 800px;
             margin: auto;
-            padding: 40px;
+            padding: 60px;
             background-color: transparent;
         }
 
         .story {
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             background-color: rgba(224, 216, 216, 0.8);
             padding: 20px;
             border-radius: 8px;
@@ -59,24 +60,24 @@
         .story-title {
             color: rgba(147, 139, 41, 0.9);
             font-family: "楷体", "serif";
-            font-size: 20px;
+            font-size: 28px;
             text-decoration: none;
         }
 
         .story-time {
-            font-size: 0.9em;
+            font-size: 20px;
             color: #888;
         }
 
         .avatar {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             cursor: pointer;
         }
 
         .story-image {
-            width: 150px;
+            width: 200px;
             height: auto;
             margin-top: 10px;
             opacity: 0.5;
@@ -101,12 +102,16 @@
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
             transition: background-color 0.3s;
         }
 
         .scroll-top:hover {
-            background-color: #0056b3;
+            background-color: #004080;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 91, 187, 0.5);
         }
+
 
         p {
             color: #333;
@@ -118,6 +123,7 @@
             padding: 10px;
             background-color: rgba(212, 191, 191, 0.8);
             border-radius: 5px;
+            font-size: 24px;
         }
 
         .music-controls {
@@ -125,27 +131,28 @@
             top: 20px;
             right: 20px;
             padding: 10px;
-            /* 调整内边距 */
             background-image: url('./Images/纸嫁衣.jpg');
             background-size: cover;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            height: 100px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            /* 增加阴影效果 */
+            width: 400px;
+            height: 220px;
             font-size: 14px;
             color: white;
             text-align: center;
             overflow: hidden;
         }
 
+
         .music-controls button {
             position: absolute;
             bottom: 5px;
             left: 5px;
-            width: 40px;
-            height: 30px;
+            width: 60px;
+            height: 40px;
             margin: 0;
-            font-size: 12px;
+            font-size: 24px;
             cursor: pointer;
             background-color: rgba(0, 0, 0, 0);
             /* 设置背景为完全透明 */
@@ -172,17 +179,17 @@
             /* 去掉默认样式 */
             appearance: none;
             /* 去掉默认样式 */
-            font-size: 12px;
+            font-size: 24px;
             /* 字体大小 */
             padding: 5px;
             /* 内边距 */
             position: absolute;
             /* 修改为绝对定位 */
-            bottom: 5px;
+            bottom: 2%;
             /* 距离底部的距离 */
-            right: 10px;
+            right: 2%;
             /* 距离右边的距离 */
-            font-size: 12px;
+            font-size: 20px;
         }
 
 
@@ -408,6 +415,9 @@
                 <button id="music-toggle" onclick="toggleMusic()">播放</button>
             </div>
 
+            <!-- 回到顶部按钮 -->
+            <button class="scroll-top" onclick="scrollToTop()">回到顶部</button>
+
             <script>
                 let audioContext;
                 let audioBuffer;
@@ -517,6 +527,12 @@
                 });
 
 
+                function scrollToTop() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
             </script>
         </div>
 
