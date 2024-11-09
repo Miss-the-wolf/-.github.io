@@ -84,7 +84,7 @@
         }
 
         .story-image:hover {
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         a {
@@ -192,6 +192,46 @@
             color: white;
             /* 设置字体颜色为白色 */
         }
+
+        .story-image-container {
+            width: 50%;
+            max-width: 100%;
+            /* 容器最大宽度适应图片 */
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+            /* 确保图片居中 */
+        }
+
+        #story-img {
+            width: 100%;
+            transition: transform 0.3s ease;
+            object-fit: contain;
+            /* 确保图片不会失真，完全显示 */
+        }
+
+        /* 放大后的样式，确保居中 */
+        .story-image-container.zoomed-in {
+            transform: scale(1.5);
+            /* 放大图片至原来的两倍 */
+            transition: transform 0.3s ease;
+            /* 平滑过渡 */
+            z-index: 1000;
+            /* 确保图片位于其他元素之上 */
+            cursor: zoom-out;
+            /* 鼠标悬停时显示放大镜图标 */
+        }
+
+        .story-image-container img {
+            object-fit: contain;
+            /* 确保图片按比例显示 */
+            display: block;
+            /* 防止图片默认的 inline 属性影响布局 */
+            width: 100%;
+            /* 确保图片占满容器 */
+            height: auto;
+            /* 保持图片的纵横比 */
+        }
     </style>
 
 
@@ -212,12 +252,46 @@
                     </a>
                     <div class="story-info">
                         <span>
+                            <a href="./Stories/story9.html" class="story-title">忙碌的一天</a>
+                        </span>
+                        <span class="story-time">&nbsp2024年11月9日</span>
+                    </div>
+                </div>
+                <div class="story-image-container">
+                    <img src="./Images/显示器.jpg" alt="故事图片" class="story-image zoomable">
+                </div>
+                <p class="story-text">我的显示器到了，哈哈哈哈哈，开心，发着发着就睡着了，现在年轻人精神就是好，说睡就睡，发着发着就消失了</p>
+            </article>
+
+            <article class="story">
+                <div class="story-header">
+                    <a href="encounter.html">
+                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
+                    </a>
+                    <div class="story-info">
+                        <span>
+                            <a href="./Stories/story8.html" class="story-title">忙碌的一天</a>
+                        </span>
+                        <span class="story-time">&nbsp2024年11月8日</span>
+                    </div>
+                </div>
+                <img src="./Images/纠结.gif" alt="故事图片" class="story-image zoomable">
+                <p class="story-text">瞎忙一天</p>
+            </article>
+
+            <article class="story">
+                <div class="story-header">
+                    <a href="encounter.html">
+                        <img src="./Images/怪兽.jpg" alt="头像" class="avatar">
+                    </a>
+                    <div class="story-info">
+                        <span>
                             <a href="./Stories/story7.html" class="story-title">纠结的一天</a>
                         </span>
                         <span class="story-time">&nbsp2024年11月7日</span>
                     </div>
                 </div>
-                <img src="./Images/纠结.gif" alt="故事图片" class="story-image">
+                <img src="./Images/纠结.gif" alt="故事图片" class="story-image zoomable">
                 <p class="story-text">我该怎么办，哎</p>
             </article>
 
@@ -233,7 +307,7 @@
                         <span class="story-time">&nbsp2024年11月6日</span>
                     </div>
                 </div>
-                <img src="./Images/烦.gif" alt="故事图片" class="story-image">
+                <img src="./Images/烦.gif" alt="故事图片" class="story-image zoomable">
                 <p class="story-text">烦</p>
             </article>
 
@@ -249,7 +323,7 @@
                         <span class="story-time">&nbsp2024年11月5日</span>
                     </div>
                 </div>
-                <img src="./Images/烦.jpg" alt="故事图片" class="story-image">
+                <img src="./Images/烦.jpg" alt="故事图片" class="story-image zoomable">
                 <p class="story-text">烦</p>
             </article>
 
@@ -265,7 +339,7 @@
                         <span class="story-time">&nbsp2024年11月4日</span>
                     </div>
                 </div>
-                <img src="./Images/颓废.jpg" alt="故事图片" class="story-image">
+                <img src="./Images/颓废.jpg" alt="故事图片" class="story-image zoomable">
                 <p class="story-text">昨晚做了个奇怪的梦，突然就醒了，脑子特别清醒，睡不着就给她发了两句，哼，升完旗又回去睡了一上午，中午又睡了一下午，颓废的一天，哎。</p>
             </article>
 
@@ -281,7 +355,7 @@
                         <span class="story-time">&nbsp2024年11月3日</span>
                     </div>
                 </div>
-                <img src="./Images/崩溃.png" alt="故事图片" class="story-image">
+                <img src="./Images/崩溃.png" alt="故事图片" class="story-image zoomable">
                 <p class="story-text">受不了了，能他妈踢成这么个吊样，被戏耍，菜出天际，真是废。</p>
             </article>
 
@@ -297,7 +371,7 @@
                         <span class="story-time">&nbsp2024年11月2日</span>
                     </div>
                 </div>
-                <img src="./Images/奥特曼.jpg" alt="故事图片" class="story-image">
+                <img src="./Images/奥特曼.jpg" alt="故事图片" class="story-image zoomable">
                 <p class="story-text">睡了一上午，十点半才起，踢球到3点，颇有长进吧，还是挺菜，又瞎搞了一下午，时间过得真快，干饭去。</p>
             </article>
 
@@ -422,6 +496,27 @@
                         saveMusicState(); // 每隔一段时间保存当前时间
                     }
                 }, 1000);
+
+
+                // 将事件监听器绑定到父容器，而不是每个图片上
+                // 使用事件委托，为所有故事中的图片绑定双击事件
+                // 绑定双击事件到父元素（使用事件委托）
+                // 绑定双击事件到 document 上，利用事件委托确保所有图片都能响应
+                document.addEventListener('dblclick', function (event) {
+                    // 检查点击的是否是带有 zoomable 类的图片
+                    if (event.target && event.target.classList.contains('zoomable')) {
+                        var container = event.target.closest('.story-image-container');
+
+                        // 切换放大与正常状态
+                        if (container.classList.contains('zoomed-in')) {
+                            container.classList.remove('zoomed-in'); // 恢复原始大小
+                        } else {
+                            container.classList.add('zoomed-in'); // 放大图片
+                        }
+                    }
+                });
+
+
             </script>
         </div>
 
