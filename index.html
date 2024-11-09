@@ -14,6 +14,8 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
@@ -431,6 +433,89 @@
             padding: 8px;
             font-size: 34px;
             color: #241c1c;
+        }
+
+        /* Make it mobile-friendly */
+        @media (max-width: 768px) {
+            .navbar button {
+                font-size: 14px;
+                /* smaller button text */
+                padding: 10px 15px;
+                /* smaller padding */
+            }
+
+            .search-container input {
+                width: 150px;
+                /* smaller search input width */
+                font-size: 12px;
+                /* smaller font size */
+            }
+
+            .box {
+                width: 300px;
+                /* smaller box size */
+                height: 150px;
+                /* smaller height */
+            }
+
+            .avatar {
+                width: 100px;
+                /* smaller avatar */
+                height: 100px;
+                /* smaller avatar */
+            }
+
+            .clock {
+                width: 200px;
+                /* smaller clock */
+                height: 200px;
+                /* smaller clock */
+            }
+
+            .number {
+                font-size: 20px;
+                /* smaller number */
+            }
+
+            /* Ensure all content fits on small screens */
+            body {
+                padding-top: 60px;
+                /* add padding to avoid navbar overlap */
+            }
+        }
+
+        /* Make it very small on extra small screens */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+                /* smaller heading size */
+            }
+
+            .navbar button {
+                font-size: 12px;
+                /* even smaller buttons */
+                padding: 8px 12px;
+                /* even smaller padding */
+            }
+
+            .search-container input {
+                width: 120px;
+                /* even smaller input */
+            }
+
+            .box {
+                width: 250px;
+                /* very small box */
+                height: 120px;
+                /* very small box height */
+            }
+
+            .clock {
+                width: 150px;
+                /* very small clock */
+                height: 150px;
+                /* very small clock */
+            }
         }
     </style>
 </head>
