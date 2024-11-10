@@ -115,6 +115,41 @@
             transform: scale(1.1);
         }
 
+        /* 分享导航栏 */
+        /* 左侧样式 */
+        .left-navbar {
+            display: flex;
+            flex-direction: column;
+            /* 使按钮纵向排列 */
+            /* 水平排列并靠右 */
+            gap: 10px;
+            position: absolute;
+            top: 150px;
+            /* 距离顶部 20px */
+            left: 10px;
+            /* 距离右边 20px */
+            z-index: 10;
+            /* 确保按钮在其他内容上方 */
+            transform: translateY(100%);
+        }
+
+        .left-nav-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            /* 按钮之间留出间隔 */
+        }
+
+        .left-nav-button:hover {
+            background-color: #555;
+        }
+
+
         /* 音乐类型按钮容器样式 */
         .music-type-buttons {
             display: flex;
@@ -140,7 +175,6 @@
             cursor: pointer;
             margin-bottom: 10px;
             /* 按钮之间留出间隔 */
-
         }
 
         .type-button:hover {
@@ -212,27 +246,31 @@
             /* 左右留白 */
         }
 
-        /* 视频容器 */
-        .video-container {
-            width: 600px;
-            /* 设置视频容器的宽度 */
-            height: 400px;
-            /* 设置视频容器的高度 */
-            padding: 10px;
-            background-color: transparent;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
         /* 视频样式 */
         video {
-            width: 100%;
-            /* 视频宽度填充父容器 */
-            height: 100%;
-            /* 视频高度填充父容器 */
+            width: 1100px;
+            /* 设置视频的宽度 */
+            height: 700px;
+            /* 设置视频的高度 */
             object-fit: cover;
-            /* 保持视频的宽高比，避免拉伸 */
+            /* 保持视频的比例，填满指定区域 */
             border-radius: 10px;
+            /* 设置圆角效果 */
+            margin-left: 200px;
+        }
+
+
+        .video-title {
+            font-size: 46px;
+            /* 设置标题字体大小 */
+            color: #333;
+            /* 设置标题颜色 */
+            /* font-family: "KaiTi", "楷体"; */
+            margin-bottom: 10px;
+            /* 设置标题和视频之间的间距 */
+            font-weight: bold;
+            /* 设置标题为加粗 */
+            margin-top: 0px;
         }
 
         /* 视频说明文字 */
@@ -240,7 +278,8 @@
             font-size: 20px;
             color: #4f3d3d;
             margin-top: 10px;
-            text-align: center;
+            text-align: left;
+            margin-left: 200px;
         }
 
         /* 音乐列表样式 */
@@ -328,17 +367,66 @@
     </nav>
 
     <!-- 主内容区域 -->
+
+    <!-- 左侧导航栏 -->
+    <div class="left-navbar">
+        <button class="left-nav-button" onclick="showContent('fate')">缘</button>
+        <button class="left-nav-button" onclick="showContent('music')">音乐</button>
+        <button class="left-nav-button" onclick="showContent('movie')">电影</button>
+        <button class="left-nav-button" onclick="showContent('books')">书籍</button>
+        <button class="left-nav-button" onclick="showContent('story')">故事</button>
+        <button class="left-nav-button" onclick="showContent('shortFilm')">短片</button>
+
+    </div>
+
+    <!-- 内容 -->
     <div class="main-container">
         <!-- 视频容器 -->
-        <div class="video-container">
-            <video controls>
-                <source src="./Video/11.mp4" type="video/mp4">
-                您的浏览器不支持视频播放。
-            </video>
+        <div id="fate" class="content-container" style="display: none;">
+            <h2 class="video-title">随缘喽</h2>
+        </div>
+
+        <div id="music" class="content-container" style="display: none;">
+            <h2 class="video-title">音乐分享</h2>
+        </div>
+
+        <div id="movie" class="content-container" style="display: none;">
+            <h2 class="video-title">电影分享</h2>
+        </div>
+
+        <div id="books" class="content-container" style="display: none;">
+            <h2 class="video-title">书籍分享</h2>
+        </div>
+
+        <div id="story" class="content-container" style="display: none;">
+            <h2 class="video-title">故事分享</h2>
+        </div>
+
+        <div id="shortFilm" class="content-container" style="display: none;">
+            <!-- 标题部分 -->
+            <h2 class="video-title">短片分享</h2>
             <div class="video-description">
-                这是一个精彩的视频示例，播放一些经典的音乐片段。
+                短片：概率为0的事件未必是不可能事件
+            </div>
+            <div class="video-item">
+                <video controls>
+                    <source src="./Video/14.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+
+            </div>
+            <div class="video-description">
+                短片：淋雨小故事
+            </div>
+            <div class="video-item">
+                <video controls>
+                    <source src="./Video/11.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+
             </div>
         </div>
+
 
         <!-- 音乐类型按钮 -->
         <div class="music-type-buttons">
@@ -360,18 +448,21 @@
                 <div class="music-name">不要慌太阳下山有月光</div>
                 <div class="music-author">作者：婉枫&张朕</div>
             </div>
-            <div class="music-item rock" onclick="playMusic('Music/光辉岁月.ogg')">
+            <div class="music-item pop" onclick="playMusic('Music/光辉岁月.ogg')">
                 <div class="music-name">光辉岁月</div>
                 <div class="music-author">作者：Beyond</div>
+                <!-- <div class="music-item rock" onclick="playMusic('Music/光辉岁月.ogg')">
+                <div class="music-name">光辉岁月</div>
+                <div class="music-author">作者：Beyond</div> -->
             </div>
             <div class="music-item electronic" onclick="playMusic('Music/富士山下.ogg')">
                 <div class="music-name">富士山下</div>
                 <div class="music-author">作者：陈奕迅</div>
             </div>
-            <div class="music-item jazz" onclick="playMusic('Music/富士山下.ogg')">
+            <!-- <div class="music-item jazz" onclick="playMusic('Music/富士山下.ogg')">
                 <div class="music-name">富士山下</div>
                 <div class="music-author">作者：陈奕迅</div>
-            </div>
+            </div> -->
             <div class="music-item electronic" onclick="playMusic('Music/红玫瑰.ogg')">
                 <div class="music-name">红玫瑰</div>
                 <div class="music-author">作者：陈奕迅</div>
@@ -437,6 +528,23 @@
         function playMusic(file) {
             var audio = new Audio(file);
             audio.play();
+        }
+    </script>
+
+    <!-- 视频内容控制 -->
+
+    <script>
+        // 页面加载后自动显示“缘”内容
+        window.onload = function () {
+            showContent('fate');
+        }
+        function showContent(contentId) {
+            // 隐藏所有内容容器
+            const contents = document.querySelectorAll('.content-container');
+            contents.forEach(content => content.style.display = 'none');
+
+            // 显示指定的内容容器
+            document.getElementById(contentId).style.display = 'block';
         }
     </script>
 </body>
