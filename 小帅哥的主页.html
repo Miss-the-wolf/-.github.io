@@ -8,28 +8,29 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link rel="icon" href="tb.ico" type="image/x-icon">
     <style>
+        /* 通用样式 */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-image: url('./Images/柯南.png');
-            /* 替换为你的自定义图片路径 */
+            background-image: url('./Images/10.png');
             background-size: cover;
-            /* 让背景图覆盖整个页面 */
             background-position: center;
-            /* 背景图居中 */
-            font-size: 26px;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
         }
 
+        /* 页头样式 */
         header {
             text-align: center;
             padding: 46px;
             background-image: url('./Images/色图.jpg');
             background-size: cover;
+            /* 填充整个header区域 */
             background-position: center;
             color: #fff;
         }
 
+
+        /* 头像样式 */
         .avatar {
             width: 80px;
             height: 80px;
@@ -37,20 +38,55 @@
             margin-bottom: 10px;
         }
 
+        /* 标题样式 */
         h1 {
             font-size: 36px;
             margin: 0;
             font-family: 'KaiTi', '楷体', sans-serif;
+            /* 楷体字体 */
         }
 
-        main {
-            padding: 40px;
+
+
+        /* 链接样式 */
+        a {
+            text-decoration: none;
+            /* 去掉链接的下划线 */
+            color: #d47216;
+            /* 保持文字颜色继承父元素的颜色 */
+            font-size: 28px;
+            transition: color 0.3s, transform 0.2s;
         }
 
-        .web {
-            margin-bottom: 40px;
+        /* 链接的点击效果 */
+        a:active {
+            background-color: #e3e7eb;
+            /* 点击时背景变为淡蓝色 */
+            color: #ff4500;
+            /* 点击时字体颜色变为橙色 */
+            transform: scale(0.5);
+            /* 点击时稍微缩小 */
         }
 
+        /* 鼠标悬浮时的效果 */
+        a:hover {
+            color: #ff4500;
+            /* 悬浮时字体颜色变为橙色 */
+            background-color: #f0f8ff;
+            /* 背景颜色变为淡蓝色 */
+            transform: scale(1.05);
+            /* 放大 */
+        }
+
+        /* 获取焦点时的效果 */
+        a:focus {
+            border: 2px solid #ff4500;
+            /* 获取焦点时显示边框 */
+            outline: none;
+            /* 去除默认焦点框 */
+        }
+
+        /* 特定链接样式 */
         a[href="#"] {
             position: fixed;
             right: 10px;
@@ -60,6 +96,7 @@
             color: #fff;
             border-radius: 5px;
             text-decoration: none;
+            /* 去掉下划线 */
             transition: background-color 0.3s;
         }
 
@@ -68,52 +105,24 @@
         }
 
 
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: #333;
-            color: #fff;
-        }
+
 
         /* 按钮样式 */
         .jump-button {
             margin: 5px;
             padding: 10px 15px;
             background-color: #007bff;
-            /* 按钮背景颜色 */
             color: #fff;
-            /* 按钮字体颜色 */
             border: none;
-            /* 去掉边框 */
             border-radius: 5px;
-            /* 圆角 */
             cursor: pointer;
-            /* 鼠标悬停时显示手形 */
             font-size: 28px;
-            /* 字体大小 */
             transition: background-color 0.3s, transform 0.3s;
-            /* 动画效果 */
         }
 
         .jump-button:hover {
             background-color: #0056b3;
-            /* 悬停时背景颜色 */
             transform: translateY(-2px);
-            /* 悬停时向上移动 */
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5em;
-                /* 小屏幕下字体变小 */
-            }
-
-            .avatar {
-                width: 60px;
-                /* 小屏幕下头像变小 */
-                height: 60px;
-            }
         }
     </style>
 </head>
@@ -153,7 +162,7 @@
                 <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
                 <li><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/" target="_blank">CS50</a>
                 <li><a href="https://x.com/home?lang=en/" target="_blank">Twitter</a></li>
-                <li><a href="https://turboscribe.ai/zh-CN/downloader/youtube" target="_blank">YouTube下载</a></li>
+
                 </li>
             </ul>
         </section>
@@ -181,6 +190,9 @@
                 <li><a href="https://book.douban.com/" target="_blank">豆瓣读书</a></li>
                 <li><a href="https://m.fx361.com/bk/yl/history_2024.html" target="_blank">杂志</a></li>
                 <li><a href="https://www.yixi.tv/" target="_blank">一席</a></li>
+                <li><a href="https://www.youtube.com/watch?v=Hbw-9Eovdf0&list=PLlD7SeKBB31c-13gX1OAVfEoWSLRsDOwU&index=1"
+                        target="_blank">易中天品三国</a></li>
+
             </ul>
         </section>
 
@@ -200,6 +212,7 @@
                 <li><a href="http://oeasy.org/" target="_blank">oeasy</a></li>
                 <li><a href="https://www.52pojie.cn/index.php" target="_blank">吾爱</a></li>
                 <li><a href="https://www.cnblogs.com/" target="_blank">博客园</a></li>
+                <li><a href="https://turboscribe.ai/zh-CN/downloader/youtube" target="_blank">YouTube下载</a></li>
             </ul>
         </section>
 
