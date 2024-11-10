@@ -18,11 +18,12 @@
             /* 让背景图覆盖整个页面 */
             background-position: center;
             /* 背景图居中 */
+            font-size: 26px;
         }
 
         header {
             text-align: center;
-            padding: 20px;
+            padding: 46px;
             background-image: url('./Images/色图.jpg');
             background-size: cover;
             background-position: center;
@@ -37,27 +38,35 @@
         }
 
         h1 {
-            font-size: 2em;
+            font-size: 36px;
             margin: 0;
             font-family: 'KaiTi', '楷体', sans-serif;
         }
 
         main {
-            padding: 20px;
+            padding: 40px;
         }
 
         .web {
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
-        a {
-            color: #007bff;
+        a[href="#"] {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
             text-decoration: none;
+            transition: background-color 0.3s;
         }
 
-        a:hover {
-            text-decoration: underline;
+        a[href="#"]:hover {
+            background-color: #0056b3;
         }
+
 
         footer {
             text-align: center;
@@ -80,7 +89,7 @@
             /* 圆角 */
             cursor: pointer;
             /* 鼠标悬停时显示手形 */
-            font-size: 1em;
+            font-size: 28px;
             /* 字体大小 */
             transition: background-color 0.3s, transform 0.3s;
             /* 动画效果 */
@@ -136,7 +145,7 @@
         <section id="interest" class="web">
             <h2>我的兴趣</h2>
             <ul>
-                <li><a href="https://chatgpt.com/" target="_blank">ChatGPT</a></li>
+                <li><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a></li>
                 <li><a href="https://github.com/" target="_blank">GitHub</a></li>
                 <li><a href="https://translate.google.com/" target="_blank">翻译</a></li>
                 <li><a href="https://mail.google.com/" target="_blank">邮箱</a></li>
@@ -144,6 +153,7 @@
                 <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
                 <li><a href="https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python/" target="_blank">CS50</a>
                 <li><a href="https://x.com/home?lang=en/" target="_blank">Twitter</a></li>
+                <li><a href="https://turboscribe.ai/zh-CN/downloader/youtube" target="_blank">YouTube下载</a></li>
                 </li>
             </ul>
         </section>
