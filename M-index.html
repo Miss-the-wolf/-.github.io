@@ -458,7 +458,6 @@
             </div>
         </div>
 
-
         <!-- 音乐类型按钮 -->
         <div class="music-type-buttons">
             <button class="type-button" onclick="showAllMusic()">全部</button>
@@ -479,21 +478,82 @@
                 <div class="music-name">不要慌太阳下山有月光</div>
                 <div class="music-author">作者：婉枫&张朕</div>
             </div>
+            <div class="music-item pop" onclick="playMusic('Music/伤离别.ogg')">
+                <div class="music-name">伤离别</div>
+                <div class="music-author">作者：魏新雨</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/风经过，唱离合.ogg')">
+                <div class="music-name">风经过，唱离合</div>
+                <div class="music-author">作者：婉枫&张朕</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/若月亮没来.ogg')">
+                <div class="music-name">若月亮没来</div>
+                <div class="music-author">作者：王宇宙Leto_乔浚丞</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/童年.ogg')">
+                <div class="music-name">童年</div>
+                <div class="music-author">作者：罗大佑</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/感谢你曾来过.ogg')">
+                <div class="music-name">感谢你曾来过</div>
+                <div class="music-author">作者：周思涵</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/青花.aac')">
+                <div class="music-name">青花</div>
+                <div class="music-author">作者：周传雄</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/卜卦.ogg')">
+                <div class="music-name">卜卦</div>
+                <div class="music-author">作者：</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/君への嘘.ogg')">
+                <div class="music-name">君への嘘</div>
+                <div class="music-author">作者：忘了</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/黄昏.ogg')">
+                <div class="music-name">黄昏</div>
+                <div class="music-author">作者：周传雄</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/不是因为寂寞才想你.ogg')">
+                <div class="music-name">不是因为寂寞才想你</div>
+                <div class="music-author">作者：T_R_Y</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/关不上的窗.aac')">
+                <div class="music-name">关不上的窗</div>
+                <div class="music-author">作者：周传雄</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/寂寞沙洲冷.ogg')">
+                <div class="music-name">寂寞沙洲冷</div>
+                <div class="music-author">作者：周传雄</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/冬天的秘密.aac')">
+                <div class="music-name">冬天的秘密</div>
+                <div class="music-author">作者：周传雄</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/渡月橋_～君_想ふ～.ogg')">
+                <div class="music-name">渡月橋_～君_想ふ～</div>
+                <div class="music-author">作者：wl</div>
+            </div>
             <div class="music-item pop" onclick="playMusic('Music/光辉岁月.ogg')">
                 <div class="music-name">光辉岁月</div>
                 <div class="music-author">作者：Beyond</div>
-                <!-- <div class="music-item rock" onclick="playMusic('Music/光辉岁月.ogg')">
-                <div class="music-name">光辉岁月</div>
-                <div class="music-author">作者：Beyond</div> -->
+            </div>
+            <div class="music-item rock" onclick="playMusic('Music/Pretty_Boy.ogg')">
+                <div class="music-name">Pretty_Boy</div>
+                <div class="music-author">作者：wl</div>
+            </div>
+            <div class="music-item rock" onclick="playMusic('Music/Dehors.mp3')">
+                <div class="music-name">Dehors</div>
+                <div class="music-author">作者：wl</div>
             </div>
             <div class="music-item electronic" onclick="playMusic('Music/富士山下.ogg')">
                 <div class="music-name">富士山下</div>
                 <div class="music-author">作者：陈奕迅</div>
             </div>
-            <!-- <div class="music-item jazz" onclick="playMusic('Music/富士山下.ogg')">
-                <div class="music-name">富士山下</div>
-                <div class="music-author">作者：陈奕迅</div>
-            </div> -->
+            <div class="music-item jazz" onclick="playMusic('Music/荒.mp3')">
+                <div class="music-name">荒</div>
+                <div class="music-author">作者：wl</div>
+            </div>
             <div class="music-item electronic" onclick="playMusic('Music/红玫瑰.ogg')">
                 <div class="music-name">红玫瑰</div>
                 <div class="music-author">作者：陈奕迅</div>
@@ -501,6 +561,10 @@
             <div class="music-item pop" onclick="playMusic('Music/星似烟火.mp3')">
                 <div class="music-name">星似烟火</div>
                 <div class="music-author">作者：陈壹千</div>
+            </div>
+            <div class="music-item pop" onclick="playMusic('Music/海阔天空.mp3')">
+                <div class="music-name">海阔天空</div>
+                <div class="music-author">作者：Beyond</div>
             </div>
         </div>
     </div>
@@ -556,14 +620,28 @@
         }
 
         // 播放音乐
-        function playMusic(file) {
-            var audio = new Audio(file);
+        var currentAudio = null; // 用来保存当前播放的音频
+
+        // 播放音乐的函数
+        function playMusic(musicSrc) {
+            // 如果当前有音乐在播放，先暂停
+            if (currentAudio) {
+                currentAudio.pause(); // 暂停当前音乐
+            }
+
+            // 创建一个新的音频元素
+            var audio = new Audio(musicSrc);
+
+            // 播放新音乐
             audio.play();
+
+            // 保存当前播放的音频对象
+            currentAudio = audio;
         }
+
     </script>
 
     <!-- 视频内容控制 -->
-
     <script>
         // 页面加载后自动显示“缘”内容
         window.onload = function () {
