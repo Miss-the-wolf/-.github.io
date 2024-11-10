@@ -95,6 +95,10 @@
 
         .navbar .nav-links a:hover {
             color: #ddd;
+            background-color: #555;
+            /* 背景色 */
+            text-decoration: underline;
+            /* 添加下划线 */
         }
 
         /* 风格选择图片 */
@@ -111,22 +115,32 @@
             transform: scale(1.1);
         }
 
-        /* 音乐类型按钮样式 */
+        /* 音乐类型按钮容器样式 */
         .music-type-buttons {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
+            /* 水平排列并靠右 */
             gap: 10px;
-            margin: 20px 0;
+            position: absolute;
+            top: 150px;
+            /* 距离顶部 20px */
+            right: 10px;
+            /* 距离右边 20px */
+            z-index: 10;
+            /* 确保按钮在其他内容上方 */
         }
 
         .type-button {
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 18px;
             background-color: #333;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-bottom: 10px;
+            /* 按钮之间留出间隔 */
+
         }
 
         .type-button:hover {
@@ -194,13 +208,16 @@
             align-items: flex-start;
             justify-content: space-between;
             padding: 20px;
-            margin: 0 15%;
+            margin: 0 1%;
             /* 左右留白 */
         }
 
         /* 视频容器 */
         .video-container {
-            width: 45%;
+            width: 600px;
+            /* 设置视频容器的宽度 */
+            height: 400px;
+            /* 设置视频容器的高度 */
             padding: 10px;
             background-color: transparent;
             border-radius: 10px;
@@ -210,13 +227,17 @@
         /* 视频样式 */
         video {
             width: 100%;
-            max-width: 100%;
+            /* 视频宽度填充父容器 */
+            height: 100%;
+            /* 视频高度填充父容器 */
+            object-fit: cover;
+            /* 保持视频的宽高比，避免拉伸 */
             border-radius: 10px;
         }
 
         /* 视频说明文字 */
         .video-description {
-            font-size: 16px;
+            font-size: 20px;
             color: #4f3d3d;
             margin-top: 10px;
             text-align: center;
@@ -224,11 +245,18 @@
 
         /* 音乐列表样式 */
         .music-list {
-            width: 45%;
+            width: 300px;
+            /* 可以根据需要调整宽度 */
             padding: 10px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            /* 向下移动 */
+            margin-left: auto;
+            /* 自动靠右 */
+            margin-right: 0px;
+            /* 可选，确保右侧有间距 */
         }
 
         .music-item {
@@ -280,31 +308,21 @@
 
     <!-- 导航栏 -->
     <nav class="navbar">
-        <!-- 图标和标题 -->
         <div class="logo">
             <img src="./Images/黑天鹅.jpg" alt="Logo">
             <span>Music-Time</span>
         </div>
-
-        <!-- 导航链接和风格切换容器 -->
         <div class="nav-links-container">
-            <!-- 搜索框 -->
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="搜索音乐..." oninput="filterMusic()">
                 <span class="search-icon">🔍</span>
             </div>
-
-            <!-- 导航链接 -->
             <div class="nav-links">
                 <a href="M-index.html">主页</a>
                 <a href="M-about.html">关于</a>
-                <!-- <a href="M-content.html">联系</a> -->
             </div>
-
-            <!-- 风格切换图片 -->
             <div class="style-selector">
-                <img src="./Images/白天鹅.jpg
-                " alt="切换风格" onclick="toggleStyle()">
+                <img src="./Images/白天鹅.jpg" alt="切换风格" onclick="toggleStyle()">
             </div>
         </div>
     </nav>
@@ -324,116 +342,102 @@
 
         <!-- 音乐类型按钮 -->
         <div class="music-type-buttons">
-            <button class="type-button" onclick="filterMusicByType('classical')">古典</button>
+            <button class="type-button" onclick="showAllMusic()">全部</button>
+            <button class="type-button" onclick="filterMusicByType('classical')">古风</button>
+            <button class="type-button" onclick="filterMusicByType('electronic')">伤感</button>
             <button class="type-button" onclick="filterMusicByType('pop')">流行</button>
-            <button class="type-button" onclick="filterMusicByType('rock')">摇滚</button>
-            <button class="type-button" onclick="filterMusicByType('jazz')">爵士</button>
-            <button class="type-button" onclick="filterMusicByType('electronic')">电子</button>
+            <button class="type-button" onclick="filterMusicByType('rock')">英文</button>
+            <button class="type-button" onclick="filterMusicByType('jazz')">轻音乐</button>
         </div>
 
         <!-- 音乐列表 -->
         <div class="music-list" id="musicList">
-            <div class="music-item" onclick="playMusic('Music/白鸽乌鸦相爱的戏码.ogg')">
+            <div class="music-item classical" data-top="true" onclick="playMusic('Music/白鸽乌鸦相爱的戏码.ogg')">
                 <div class="music-name">白鸽乌鸦相爱的戏码</div>
                 <div class="music-author">作者：潘成</div>
             </div>
-            <div class="music-item" onclick="playMusic('Music/不要慌太阳下山有月光.ogg')">
+            <div class="music-item pop" onclick="playMusic('Music/不要慌太阳下山有月光.ogg')">
                 <div class="music-name">不要慌太阳下山有月光</div>
                 <div class="music-author">作者：婉枫&张朕</div>
             </div>
-            <div class="music-item" onclick="playMusic('Music/光辉岁月.ogg')">
+            <div class="music-item rock" onclick="playMusic('Music/光辉岁月.ogg')">
                 <div class="music-name">光辉岁月</div>
                 <div class="music-author">作者：Beyond</div>
             </div>
-            <div class="music-item" onclick="playMusic('Music/富士山下.ogg')">
+            <div class="music-item electronic" onclick="playMusic('Music/富士山下.ogg')">
                 <div class="music-name">富士山下</div>
                 <div class="music-author">作者：陈奕迅</div>
             </div>
-            <div class="music-item" onclick="playMusic('Music/红玫瑰.ogg')">
+            <div class="music-item jazz" onclick="playMusic('Music/富士山下.ogg')">
+                <div class="music-name">富士山下</div>
+                <div class="music-author">作者：陈奕迅</div>
+            </div>
+            <div class="music-item electronic" onclick="playMusic('Music/红玫瑰.ogg')">
                 <div class="music-name">红玫瑰</div>
                 <div class="music-author">作者：陈奕迅</div>
             </div>
-            <div class="music-item" onclick="playMusic('Music/星似烟火.mp3')">
+            <div class="music-item pop" onclick="playMusic('Music/星似烟火.mp3')">
                 <div class="music-name">星似烟火</div>
                 <div class="music-author">作者：陈壹千</div>
             </div>
-            <div class="music-item" onclick="playMusic('Music/海阔天空.mp3')">
-                <div class="music-name">海阔天空</div>
-                <div class="music-author">作者：Beyond</div>
-            </div>
         </div>
-
-        <!-- 音频播放器 -->
-        <audio id="audioPlayer" controls>
-            您的浏览器不支持音频播放。
-        </audio>
     </div>
 
+    <!-- 音乐播放控制 -->
     <script>
-        // 过滤音乐列表的函数
+        var musicList = document.getElementById('musicList');
+        var searchInput = document.getElementById('searchInput');
+
+        // 过滤音乐
         function filterMusic() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const musicList = document.getElementById('musicList');
-            const musicItems = musicList.getElementsByClassName('music-item');
+            var searchValue = searchInput.value.toLowerCase();
+            var musicItems = musicList.getElementsByClassName('music-item');
 
-            Array.from(musicItems).forEach(item => {
-                const text = item.textContent.toLowerCase();
-                item.style.display = text.includes(input) ? '' : 'none';
-            });
-        }
+            for (var i = 0; i < musicItems.length; i++) {
+                var musicItem = musicItems[i];
+                var musicName = musicItem.getElementsByClassName('music-name')[0].innerText.toLowerCase();
+                var musicAuthor = musicItem.getElementsByClassName('music-author')[0].innerText.toLowerCase();
 
-        // 播放音乐的函数
-        function playMusic(audioFile) {
-            const audioPlayer = document.getElementById('audioPlayer');
-            audioPlayer.src = audioFile; // 设置音频源
-            audioPlayer.play(); // 播放音频
-        }
-
-        // 切换风格的函数
-        let isDarkStyle = false;
-
-        function toggleStyle() {
-            if (isDarkStyle) {
-                document.body.classList.remove('dark-style');
-                document.body.classList.add('light-style');
-            } else {
-                document.body.classList.remove('light-style');
-                document.body.classList.add('dark-style');
-            }
-            isDarkStyle = !isDarkStyle;
-        }
-
-        // 播放音乐并保存进度
-        function playMusic(audioFile) {
-            const audioPlayer = document.getElementById('audioPlayer');
-            audioPlayer.src = audioFile;
-
-            // 检查是否有存储的播放进度
-            const savedTime = localStorage.getItem(audioFile);
-            if (savedTime) {
-                audioPlayer.currentTime = savedTime;
-            }
-
-            audioPlayer.play();
-
-            // 保存播放进度
-            audioPlayer.ontimeupdate = () => {
-                localStorage.setItem(audioFile, audioPlayer.currentTime);
-            };
-        }
-
-        // 过滤音乐类型的函数
-        function filterMusicByType(type) {
-            const musicItems = document.querySelectorAll('.music-item');
-            musicItems.forEach(item => {
-                if (item.classList.contains(type) || type === 'all') {
-                    item.style.display = ''; // 显示
+                if (musicName.indexOf(searchValue) !== -1 || musicAuthor.indexOf(searchValue) !== -1) {
+                    musicItem.style.display = '';
                 } else {
-                    item.style.display = 'none'; // 隐藏
+                    musicItem.style.display = 'none';
                 }
-            });
+            }
         }
 
+        // 按类型过滤音乐
+        function filterMusicByType(type) {
+            var musicItems = musicList.getElementsByClassName('music-item');
+            for (var i = 0; i < musicItems.length; i++) {
+                var musicItem = musicItems[i];
+                if (musicItem.classList.contains(type)) {
+                    musicItem.style.display = '';
+                } else {
+                    musicItem.style.display = 'none';
+                }
+            }
+        }
+
+        // 显示所有音乐
+        function showAllMusic() {
+            var musicItems = musicList.getElementsByClassName('music-item');
+            for (var i = 0; i < musicItems.length; i++) {
+                musicItems[i].style.display = '';
+            }
+        }
+
+        // 切换主题风格
+        function toggleStyle() {
+            document.body.classList.toggle('dark-style');
+            document.body.classList.toggle('light-style');
+        }
+
+        // 播放音乐
+        function playMusic(file) {
+            var audio = new Audio(file);
+            audio.play();
+        }
     </script>
 </body>
 
