@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频播放界面</title>
+    <style>
+        /* 设置视频播放器容器样式 */
+        .video-container {
+            width: 640px;
+            margin: 0 auto;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* 视频上方按钮容器样式 */
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* 视频上方按钮样式 */
+        .top-button {
+            background-color: #555;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .top-button:hover {
+            background-color: #777;
+        }
+
+        /* 视频元素样式 */
+        video {
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* 控制面板样式 */
+        .controls {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        /* 控制按钮样式 */
+        .button {
+            background-color: #555;
+            border: none;
+            color: white;
+            padding: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #777;
+        }
+
+        /* 进度条样式 */
+        .progress-bar {
+            flex-grow: 1;
+            height: 8px;
+            margin: 0 10px;
+            background-color: #aaa;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50;
+            border-radius: 4px;
+        }
+
+        /* 时间显示样式 */
+        .time-display {
+            color: white;
+            font-size: 16px;
+        }
+
+        /* 视频目录样式 */
+        .video-list {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100px;
+            margin: 0px auto 0 auto;
+            /* 上边距增加20px，垂直居中 */
+            color: white;
+            font-size: 18px;
+            display: none;
+            /* 初始隐藏 */
+        }
+
+        /* 视频目录标题样式 */
+        .video-list h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-family: 'KaiTi', "楷体";
+            color: #de5d21;
+        }
+
+        /* 视频项列表样式 */
+        .video-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* 单个视频项样式 */
+        .video-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #444;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* 视频项悬停样式 */
+        .video-list li:hover {
+            background-color: #666;
+        }
+
+        /* 视频项链接样式 */
+        .video-list li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-container">
+        <!-- 视频上方的按钮 -->
+        <div class="top-buttons">
+            <button class="top-button" onclick="previousVideo()">上一个</button>
+            <button class="top-button" onclick="buttonAction(2)">列表</button>
+            <button class="top-button" onclick="window.location.href='M-index.html'">音乐</button>
+            <button class="top-button" onclick="nextVideo()">下一个</button>
+        </div>
+
+        <!-- 视频目录列表 -->
+
+        <!-- 视频目录列表 -->
+        <div id="videoList" class="video-list" style="display: none;">
+            <h2>视频目录</h2>
+            <ul>
+                <li><a href="#" onclick="changeVideo(0)">视频 0</a></li>
+                <li><a href="#" onclick="changeVideo(1)">视频 1</a></li>
+                <li><a href="#" onclick="changeVideo(2)">视频 2</a></li>
+                <li><a href="#" onclick="changeVideo(3)">视频 3</a></li>
+            </ul>
+        </div>
+
+
+
+
+
+        <!-- 视频元素 -->
+        <video id="video" src="./Video/26713915544-1-192.mp4" type="video/mp4" onclick="togglePlay()"
+            onmousedown="startSpeedUp(event)" onmouseup="stopSpeedUp()" onmouseleave="stopSpeedUp()"></video>
+
+        <!-- 控制面板 -->
+        <div class="controls">
+            <button class="button" onclick="togglePlay()">播放/暂停</button>
+            <div class="progress-bar" onclick="seek(event)">
+                <div id="progress" class="progress"></div>
+            </div>
+            <div id="time-display" class="time-display">0:00 / 0:00</div>
+        </div>
+    </div>
+
+    <script>
+        // 视频列表数组
+        const videos = [
+
+            "./Video/狗猫历史.mp4", // 视频 1
+            "./Video/Tom.mp4", // 视频 2
+            "./Video/狗片.mp4",  // 视频 3
+            "./Video/开幕雷击！定格的瞬间如此炸裂.mp4"  // 视频 4
+        ];
+        let currentVideoIndex = 0; // 当前视频索引
+
+        const video = document.getElementById("video"); // 获取视频元素
+        const progress = document.getElementById("progress"); // 获取进度条元素
+        const timeDisplay = document.getElementById("time-display"); // 获取时间显示元素
+
+        // 加载页面时初始化视频并恢复播放进度
+        window.addEventListener("load", () => {
+            // 获取保存的视频播放进度和视频索引
+            const savedProgress = localStorage.getItem("videoProgress");
+            const savedIndex = localStorage.getItem("videoIndex");
+
+            if (savedIndex !== null) {
+                currentVideoIndex = parseInt(savedIndex); // 恢复视频索引
+            }
+
+            // 加载视频并播放
+            video.src = videos[currentVideoIndex];
+
+            // 等待视频的元数据加载完成再恢复播放进度
+            video.addEventListener("loadedmetadata", () => {
+                if (savedProgress !== null) {
+                    video.currentTime = parseFloat(savedProgress); // 恢复视频进度
+                }
+                video.play(); // 自动播放
+            });
+        });
+
+
+        // 播放/暂停控制
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        // 按下鼠标时开始加速播放
+        function startSpeedUp(event) {
+            video.playbackRate = 2.0; // 设置播放速度为 2 倍
+        }
+
+        // 松开鼠标时停止加速播放
+        function stopSpeedUp() {
+            video.playbackRate = 1.0; // 恢复正常播放速度
+        }
+
+        // 切换到上一个视频
+        function previousVideo() {
+            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length; // 循环播放
+            video.src = videos[currentVideoIndex];
+            video.currentTime = 0; // 重置播放时间
+            video.play(); // 自动播放新视频
+            saveProgress(); // 保存播放进度
+        }
+
+        // 切换到下一个视频
+        function nextVideo() {
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length; // 循环播放
+            video.src = videos[currentVideoIndex];
+            video.currentTime = 0; // 重置播放时间
+            video.play(); // 自动播放新视频
+            saveProgress(); // 保存播放进度
+        }
+
+        // 更新进度条和时间显示
+        video.addEventListener("timeupdate", () => {
+            const percentage = (video.currentTime / video.duration) * 100;
+            progress.style.width = percentage + "%"; // Update progress bar
+            updateTimeDisplay(); // Update time display
+            saveProgress(); // Save progress to localStorage
+        });
+
+        // 更新时间显示
+        function updateTimeDisplay() {
+            const currentMinutes = Math.floor(video.currentTime / 60);
+            const currentSeconds = Math.floor(video.currentTime % 60);
+            const totalMinutes = Math.floor(video.duration / 60);
+            const totalSeconds = Math.floor(video.duration % 60);
+
+            timeDisplay.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' + currentSeconds : currentSeconds} / ${totalMinutes}:${totalSeconds < 10 ? '0' + totalSeconds : totalSeconds}`;
+        }
+
+        // 进度条点击跳转
+        function seek(event) {
+            const barWidth = progress.offsetParent.clientWidth;
+            const clickX = event.offsetX;
+            const newTime = (clickX / barWidth) * video.duration;
+            video.currentTime = newTime;
+        }
+
+        // 显示进度条时间
+        const progressBar = document.querySelector('.progress-bar');
+        const timeTip = document.createElement('div');
+        timeTip.style.position = 'absolute';
+        timeTip.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        timeTip.style.color = '#fff';
+        timeTip.style.padding = '2px 6px';
+        timeTip.style.borderRadius = '4px';
+        timeTip.style.fontSize = '14px';
+        progressBar.appendChild(timeTip);
+
+        // 进度条上鼠标悬浮显示时间
+        progressBar.addEventListener('mousemove', (event) => {
+            const progressBarWidth = progressBar.offsetWidth;
+            const offsetX = event.offsetX;
+            const time = (offsetX / progressBarWidth) * video.duration;
+            timeTip.textContent = formatTime(time);
+            timeTip.style.left = `${offsetX - timeTip.offsetWidth / 2}px`;
+            timeTip.style.top = '-25px'; // 控制时间显示的位置
+            timeTip.style.display = 'block'; // 显示时间
+        });
+
+        // 隐藏时间显示
+        progressBar.addEventListener('mouseleave', () => {
+            timeTip.style.display = 'none'; // 隐藏时间
+        });
+
+        // 格式化时间
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' + secs : secs}`;
+        }
+
+        // 保存播放进度到 localStorage
+        function saveProgress() {
+            localStorage.setItem("videoProgress", video.currentTime); // 保存当前视频进度
+            localStorage.setItem("videoIndex", currentVideoIndex); // 保存当前视频索引
+        }
+        // 显示/隐藏视频目录列表
+        function buttonAction(buttonId) {
+            if (buttonId === 2) {
+                const videoList = document.getElementById('videoList');
+                if (videoList.style.display === 'block') {
+                    videoList.style.display = 'none'; // 关闭视频目录
+                } else {
+                    videoList.style.display = 'block'; // 显示视频目录
+                }
+            }
+        }
+
+        // 切换到指定视频
+        function changeVideo(index) {
+            currentVideoIndex = index;
+            video.src = videos[currentVideoIndex];
+            video.currentTime = 0; // 重置播放时间
+            video.play(); // 自动播放新视频
+            saveProgress(); // 保存播放进度
+            document.getElementById('videoList').style.display = 'none'; // 隐藏视频目录列表
+        }
+
+
+    </script>
+
+
+
+</body>
+
+</html>
