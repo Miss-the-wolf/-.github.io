@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情</title>
+
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-family: "KaiTi", "楷体";
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        a {
+            color: rgb(144, 146, 237);
+            text-decoration: none;
+            /* 去掉下划线 */
+        }
+
+        a:hover {
+            color: darkred;
+            /* 鼠标悬停时变为深红色 */
+        }
+
+
+        /* 页面布局 */
+        .layout {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .profile {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            margin-right: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile img.avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* 搜索框 */
+        .search {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .search-box {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        #search-results {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        #search-results li {
+            background-color: white;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #search-results li:hover {
+            background-color: #f1f1f1;
+        }
+
+        #search-results li.clicked {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .articles,
+        .article-content {
+            flex: 3;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile h2 {
+            margin-top: 0;
+        }
+
+        .articles h2 {
+            margin-top: 0;
+        }
+
+        #article-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f20505;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #article-content {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #444;
+            text-indent: 2em;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .layout {
+                flex-direction: column;
+                margin: 10px;
+            }
+
+            .profile,
+            .articles,
+            .article-content {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* 搜索框的样式优化 */
+        .search-box:focus {
+            border-color: #9f8f2a;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>文章</h1>
+        <a href="M-index.html">返回主页</a>
+    </header>
+
+    <main class="layout">
+        <section class="profile">
+            <img src="./Images/06.png" alt="头像" class="avatar">
+            <h2>无敌小帅哥</h2>
+            <p>你知道吗，我的快乐就是每天放学晚上回家看到你</p>
+            <section class="search">
+                <input type="text" id="search-input" placeholder="搜索文章标题..." class="search-box">
+                <ul id="search-results"></ul>
+            </section>
+        </section>
+
+        <!-- 文章内容部分 -->
+        <section id="article-detail" class="article-content">
+            <h2 id="article-title">在有热武器可以压制暴民的现代国家，结束奴隶制需要有什么条件？</h2>
+            <p id="article-content">
+                现代奴隶制会亡于原子化的叛乱。
+            </p>
+            <p id="article-content">
+                所谓原子化叛乱，就是没有路线，没有纲领，没有组织，没有诉求，完全是一个个原子化的个体，随机的展开报复社会的行动。他们随性而起，没有规律地进攻任何被他们视作敌人的对象，包括不限于仇人，看不顺眼的路人，妇女儿童，甚至是自己。他们如同一个个堂吉诃德，一个人就是一支叛军，用自己随意想到的方式来反抗社会的秩序，也完全不在意这种反抗会自己带来怎样的结果，一切以给社会造成最大程度的破坏为目标。
+            </p>
+            <p id="article-content">
+                现代奴隶主的热武器是专门为镇压大规模集团化叛乱而设计的，因此集体叛乱的难度比冷兵器时代提高了太多，但个体叛乱的难度却并没有提高很多。原子化叛乱的镇压成本远高于同等规模集体叛乱。一万个普通人集合起来，组成一支反政府军，占领固定的据点，进攻固定的战略要地，无论如何也打不过拥有机枪，坦克，无人机的职业军队。但如果一万个人分散在一万个地方，在一万个随机的时间，随机的地点，朝随机的人群发起随机的攻击，热武器镇压的效率就将大大下降，由此造成的破坏也远超过一万人组成的集团军。
+            </p>
+            <p id="article-content">
+                比如内蒙古那个杀了一家五口的人，在如此严密的社会监控下也花了十天时间才找到，这种人一旦多起来，带来的治安成本是无法承受的。这就是为什么现代统治者害怕治安战更甚于正面战争。
+            </p>
+            <p id="article-content">
+                当然奴隶主也会未雨绸缪，最好的办法就是使用现代信息手段，将每个人的行踪监视起来，提前瓦解一切潜在的叛乱。这时就体现出个体化叛乱的另一个优势，就是他根本没有组织也没有征兆。现代信息技术可以扼杀大多数密谋组织的叛乱，但难以察觉随性而起的报复社会行为。一个人揣着一把枪走在大街上，满街的摄像头也看不出他脑子里在想什么。你把枪禁了，他就用刀；你把刀禁了，他就开着车上街创人；你把汽车也禁了，他就捡起路边的石头砸人；你把石头也全部清理干净，他就赤手空拳的搞事，比如韩国那个梨泰院事件，就是有人在楼梯口推搡造成人群踩踏，你怎么预防？
+            </p>
+            <p id="article-content">
+                这个过程中，叛乱者永远处于先手，统治者永远在被动防御，这不是你装几处监控，加几处安检就能杜绝的。
+            </p>
+            <p id="article-content">
+                其实不止热武器，思想镇压的武器也会失效。面对一个接一个随机出现的叛乱者，你无法在道义上攻击他们，在思想上抹黑他们，因为他们既没有道义也没有思想，他们不为任何人谋福利，也不寻求解放任何人，他们不惮于杀害弱小和无辜的人，他们不受任何道德上的，纲领上的，正义上的约束，因此任你再怎么站在道德高地上审视他们，他们也视你的审判如无物。你也无法分化打压他们，他们本身就是一个个原子化的个体，你还能怎么分化？总不能把一个活人分化成无数个细胞吧。你也无法拉一派打一派，他们想起一出是一出，自己都不知道自己是哪派，你环顾四周，个个看起来都是老实人，你手握利剑，既不知道该惩罚谁，也不知道该保护谁，这就是所谓“拔剑四顾心茫然”。
+            </p>
+            <p id="article-content">
+                君以此兴，必以此亡。当奴隶主试图把奴隶集中起来压榨时，最终便会亡于集体化的叛乱；当奴隶主试图把奴隶分割成原子化的个体时，最终便会亡于原子化的叛乱。原子化的叛乱者们就如同病毒细菌，他们随着社会病态的恶化而滋生，传播，扩大，而机枪大炮是杀不死细菌的。
+            </p>
+            <p id="article-content">
+                新时代的叛乱，核心在于“乱”而不在于“叛”。新时代的叛乱者，并不需要将刀刺向统治者或是隶属于统治者的任何暴力机关，他们只需要将刀刺向身边够得着的人，不管是有仇的人还是没仇的人，认识的人还是不认识的人，身强力壮的人还是老弱病残的人，实在没人了就刺向自己，这种行为本身就是对奴隶制统治根基的动摇。奴隶制和任何契约社会一样，也是建立在群体的共同信念的基础上的，任何形式的混乱都会导致这种信念的崩塌。每多一个报复社会的人，混乱度就增加一分，奴隶社会也就向着原始丛林社会更靠近一步。而当越来越多的人开始具有随机的攻击性，越来越多的个体如同布朗运动般横冲直撞，统治者最终会发现，自己的社会规则再也无法驾驭这个不断增熵的世界，奴隶制也就走到了尽头。
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 文章分享平台</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('search-input');
+            const searchResults = document.getElementById('search-results');
+            const articleTitle = document.getElementById('article-title');
+            const articleContent = document.getElementById('article-content');
+
+            // 模拟的文章数据
+            const articles = [
+                {
+                    title: "在有热武器可以压制暴民的现代国家，结束奴隶制需要有什么条件？",
+                    content: "现代奴隶制会亡于原子化的叛乱。"
+                },
+                {
+                    title: "第二篇文章标题",
+                    content: "这是第二篇文章的内容..."
+                },
+                {
+                    title: "第三篇文章标题",
+                    content: "这是第三篇文章的内容..."
+                }
+            ];
+
+            // 搜索功能
+            searchInput.addEventListener('input', function () {
+                const query = searchInput.value.toLowerCase();
+                searchResults.innerHTML = ''; // 清空之前的搜索结果
+
+                // 查找匹配的文章
+                const filteredArticles = articles.filter(article =>
+                    article.title.toLowerCase().includes(query)
+                );
+
+                // 渲染搜索结果
+                filteredArticles.forEach((article) => {
+                    const li = document.createElement('li');
+                    li.textContent = article.title;
+
+                    // 点击某个搜索结果，更新文章标题和内容
+                    li.addEventListener('click', function () {
+                        articleTitle.textContent = article.title;
+                        articleContent.textContent = article.content;
+
+                        // 高亮显示选中的文章
+                        const allLi = searchResults.getElementsByTagName('li');
+                        for (let item of allLi) {
+                            item.classList.remove('clicked');
+                        }
+                        li.classList.add('clicked');
+                    });
+
+                    searchResults.appendChild(li);
+                });
+
+                // 如果没有找到匹配结果，显示提示
+                if (filteredArticles.length === 0) {
+                    searchResults.innerHTML = '<li>未找到匹配的文章</li>';
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
