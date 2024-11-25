@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情</title>
+
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-family: "KaiTi", "楷体";
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        a {
+            color: rgb(144, 146, 237);
+            text-decoration: none;
+            /* 去掉下划线 */
+        }
+
+        a:hover {
+            color: darkred;
+            /* 鼠标悬停时变为深红色 */
+        }
+
+        /* 页面布局 */
+        .layout {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .profile {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            margin-right: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .profile img.avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* 调整目录的宽度 */
+        .directory {
+            margin-top: 20px;
+            padding: 0;
+            width: 300px;
+            /* 增加宽度 */
+        }
+
+        /* 增加按钮的样式 */
+        .directory button {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 15px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .directory button:hover {
+            background-color: #f1f1f1;
+        }
+
+        .directory button.clicked {
+            background-color: #007bff;
+            color: white;
+        }
+
+        #article-content {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #444;
+            text-indent: 2em;
+            margin-bottom: 20px;
+        }
+
+        #article-content blockquote {
+            font-style: italic;
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 4px solid #007bff;
+            background-color: #f9f9f9;
+        }
+
+        #article-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        #article-content li {
+            margin-bottom: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .layout {
+                flex-direction: column;
+                margin: 10px;
+            }
+
+            .profile,
+            .articles,
+            .article-content {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>文章</h1>
+        <!-- 点击返回主页跳转到指定页面 -->
+        <a href="../M-index.html">返回主页</a>
+    </header>
+
+
+    <main class="layout">
+        <section class="profile">
+            <img src="../Images/06.png" alt="头像" class="avatar">
+            <h2>无敌小帅哥</h2>
+            <p>你知道吗，我的快乐就是每天放学晚上回家看到你</p>
+            <!-- 目录部分 -->
+            <div class="directory">
+                <button data-article="0" data-url="这个杀手不太冷.html">这个杀手不太冷</button>
+                <button data-article="1" data-url="美丽人生.html">美丽人生</button>
+                <button data-article="2" data-url="原子叛乱.html">原子叛乱</button>
+                <button data-article="3" data-url="经此疫劫 让我们成为有记性的人.html">经此疫劫,让我们成为有记性的人</button>
+            </div>
+        </section>
+
+        <!-- 文章内容部分 -->
+        <section id="article-detail" class="article-content">
+            <h2 id="article-title">这个杀手不太冷</h2>
+
+            <!-- 分割线 -->
+            <hr class="divider">
+
+            <div id="article-content">
+                <p><strong>题记：</strong>“这是关于两个小孩的故事，一个女孩和一个男孩，在他们心里，他们都是12岁，他们都感到失落而他们深爱彼此。” —— 吕克·贝松，《Leon》。</p>
+
+                <p>始终不明白为什么会翻译成如此古怪的一个中文片名。全英文对白，拍摄于美国纽约。一部有着浓郁的好莱坞色彩的法国导演作品。影像风格和故事情节保留了法国片特有的表现手法，虽说是商业电影，却拍的相当有艺术感。
+                </p>
+
+                <p>影片开始的时候就告诉我们，他是一个杀手。墨镜下的男人敏捷狠辣，一个著名的杀手。他以此谋生。杀手并非杀人狂，对于Leon，杀手只意味着一份职业，一份他别无选择的职业。在他的身上，让人感受到杀手的魅力。那是一种在暗处的力量，他在暗处保持着生杀予夺的权力。如同上帝一般，在暗处，在高处，在不可见之处，悬在每个人的头顶，昭示着生命的脆弱与虚无。
+                </p>
+
+                <p>舒缓的口琴的协奏曲带来几分凄迷。法兰西温和的阳光下，活着的方式黯然交替。工作，打理植物，喝牛奶，坐在沙发上睡觉，旁边放上一把枪。Leon干脆利落地完成了那单生意，回到家，取下所有的装备，开始淋浴。那一刻，让人看到了他赤裸的无助与疲惫。随后，他细心地熨衣服、喷花肥、喝牛奶，一个牌子的牛奶。一个人到空荡荡的影院津津有味地看歌舞片，像孩子一样新奇愉快，还不时回头张望除他以外的唯一观众，想和人分享他的快乐。
+                </p>
+
+                <blockquote>
+                    <p>“我要跟你学做一个杀手。”</p>
+                </blockquote>
+
+                <p>Mathilda出现。十二岁的问题少女，绿色外套，小红帽，童话一样娇好甜美的脸庞，清澈却直指人心的眼睛，充满敌意却又有些怯生生的表情。</p>
+
+                <p>当Mathilda的全家被杀，她捧着牛奶到他门口求他开门的时候，他的杀手生涯也就即将结束了。这个无依无助的女孩闯进了他的生活。</p>
+
+                <p>“我要跟你学做一个杀手。”</p>
+
+                <p>他一生中唯一温暖的时光，不再只是一个人。她会为他买两夸脱鲜奶，会和他一起训练，会和他玩放松脑筋的游戏，会对他说，“Leon，I Love
+                    You。”12岁小女孩的爱，象是甘泉，那么清醇，毫无杂质；象是阳光，那么温暖，令人目眩。</p>
+
+                <p>Leon的生活发生了改变，他会笑了，有时甚至是细心而又温柔的。一个杀手，命中注定，不能有爱，有了爱就是有了弱点。夜间，他忽然跳起身，装上消声器，将枪口对准Mathilda睡梦中的头颅。可是Leon没有办法推开她。否则，他的手不会因柔情而发抖，谈生意不会因难舍而迟到，杀人不会因牵挂而受伤。唯一能暗示他的内心生活的，只有那盆茂盛的龙舌兰。他把它当成自己的生命来培育，在任何时刻都不会舍弃的朋友。
+                </p>
+
+                <p>所以,杀手的结局已然笼罩着悲剧的色彩。电影结尾，他们并没有走到一起，终究他没有能力再保护她。她满心不舍，但命运如此。他永远只是她心底那个无法触碰的深邃黑夜。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2024 无敌小帅哥</p>
+    </footer>
+
+    <script>
+        // 获取所有目录按钮和文章数据
+        const directoryItems = document.querySelectorAll('.directory button');
+        const articles = [
+            { title: "这个杀手不太冷", url: "这个杀手不太冷.html" },
+            { title: "美丽人生", url: "美丽人生.html" },
+            { title: "原子叛乱", url: "原子叛乱.html" },
+            { title: "经此疫劫,让我们成为有记性的人", url: "经此疫劫 让我们成为有记性的人.html" }
+        ];
+
+        directoryItems.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                // 高亮显示被点击的目录按钮
+                directoryItems.forEach(btn => btn.classList.remove('clicked'));
+                button.classList.add('clicked');
+
+                // 跳转到相应的文章页面
+                window.location.href = articles[index].url;
+            });
+        });
+    </script>
+
+</body>
+
+</html>
